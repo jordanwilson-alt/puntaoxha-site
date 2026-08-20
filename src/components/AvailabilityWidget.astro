@@ -1,0 +1,70 @@
+---
+// ─────────────────────────────────────────────────────────────
+// AvailabilityWidget — date picker + Check availability CTA.
+// Clean, warm, matches Punta Ox Ha brand.
+// ─────────────────────────────────────────────────────────────
+interface Props {
+  variant?: 'block' | 'inline';
+}
+
+const { variant = 'block' } = Astro.props;
+---
+
+<section
+  class:list={[
+    variant === 'block' && 'bg-white border border-sand-200 rounded-lg p-7 md:p-10',
+    variant === 'inline' && 'border-y border-sand-200 py-8',
+    'will-reveal',
+  ]}
+>
+  <div class="text-center mb-6">
+    <p class="text-coral-500 font-medium tracking-wide uppercase text-xs md:text-sm mb-2">
+      Check Availability
+    </p>
+    <h2 class="font-display font-bold text-2xl md:text-3xl text-ink-500 tracking-tight">
+      Find Your Dates
+    </h2>
+    <p class="mt-2 text-base text-ink-400">
+      We respond to every inquiry within hours.
+    </p>
+  </div>
+
+  <form
+    method="get"
+    action="/contact"
+    class="grid gap-3 md:grid-cols-12 items-end"
+    aria-label="Quick availability search"
+  >
+    <label class="md:col-span-3 flex flex-col gap-2">
+      <span class="text-sm font-medium text-ink-500">Arrive</span>
+      <input
+        type="date"
+        name="arrive"
+        class="form-input bg-white border border-sand-300 rounded-md px-4 py-3 font-body text-base focus:border-coral-500 focus:ring-1 focus:ring-coral-500/30 transition-colors"
+      />
+    </label>
+    <label class="md:col-span-3 flex flex-col gap-2">
+      <span class="text-sm font-medium text-ink-500">Depart</span>
+      <input
+        type="date"
+        name="depart"
+        class="form-input bg-white border border-sand-300 rounded-md px-4 py-3 font-body text-base focus:border-coral-500 focus:ring-1 focus:ring-coral-500/30 transition-colors"
+      />
+    </label>
+    <label class="md:col-span-3 flex flex-col gap-2">
+      <span class="text-sm font-medium text-ink-500">Guests</span>
+      <select
+        name="guests"
+        class="form-select bg-white border border-sand-300 rounded-md px-4 py-3 font-body text-base focus:border-coral-500 focus:ring-1 focus:ring-coral-500/30 transition-colors"
+      >
+        <option value="1">1 guest</option>
+        <option value="2" selected>2 guests</option>
+        <option value="3">3 guests</option>
+        <option value="4">4 guests</option>
+      </select>
+    </label>
+    <div class="md:col-span-3">
+      <button type="submit" class="btn-primary w-full text-base py-3.5">Check Availability</button>
+    </div>
+  </form>
+</section>

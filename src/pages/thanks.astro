@@ -1,0 +1,44 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { contact } from '@lib/env';
+import { localizePath, resolveLocale, type Locale } from '@i18n';
+
+const locale = resolveLocale((Astro.props as { lang?: Locale }).lang ?? Astro.currentLocale);
+const es = locale === 'es';
+const title = es ? 'Gracias' : 'Thank you';
+const description = 'Inquiry received.';
+---
+
+<BaseLayout {title} {description} lang={locale}>
+  <section class="min-h-[70vh] flex items-center">
+    <div class="wrap-narrow text-center py-32">
+      <p class="text-coral-500 font-medium tracking-wide uppercase text-xs md:text-sm mb-4">
+        {es ? 'Mensaje recibido' : 'Inquiry Received'}
+      </p>
+      <h1 class="font-display font-bold text-4xl md:text-5xl lg:text-6xl text-ink-500 tracking-tight balance leading-tight">
+        {es ? '¡Gracias!' : 'Thank you!'}
+      </h1>
+      <p class="mt-8 font-body text-lg md:text-xl text-ink-400 leading-relaxed max-w-xl mx-auto">
+        {es
+          ? 'Tu mensaje ya está con nosotros. Te responderemos por correo o WhatsApp en unas horas — normalmente antes.'
+          : "Your message is with us. You'll hear back by email or WhatsApp within hours — usually faster."}
+      </p>
+
+      <div class="mt-12 flex flex-wrap items-center justify-center gap-4">
+        <a href={localizePath('/the-area', locale)} class="btn-primary">{es ? 'Conoce la zona' : 'Read about the area'}</a>
+        <a href={localizePath('/suites', locale)} class="text-coral-700 hover:text-coral-500 font-medium underline underline-offset-4 decoration-coral-300 hover:decoration-coral-500 transition-colors">
+          {es ? 'Volver a las casas' : 'Back to the casas'}
+        </a>
+      </div>
+
+      {contact.instagram.url && (
+        <p class="mt-16 text-sm text-ink-400">
+          {es ? 'Mientras tanto, síguenos en Instagram:' : 'While you wait, find us on Instagram:'}
+          <a href={contact.instagram.url} target="_blank" rel="noopener" class="text-coral-700 hover:text-coral-500 ml-1 underline underline-offset-2">
+            @{contact.instagram.handle}
+          </a>
+        </p>
+      )}
+    </div>
+  </section>
+</BaseLayout>

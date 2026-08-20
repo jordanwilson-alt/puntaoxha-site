@@ -1,0 +1,206 @@
+/* ─────────────────────────────────────────────────────────────
+   Punta Ox Ha — Global Styles v2 (Premium / Community-Led)
+   tokens → base → components → utilities
+   ───────────────────────────────────────────────────────────── */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap');
+
+@import './tokens.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Base ─────────────────────────────────────────────────── */
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html {
+    background: var(--cream);
+    color: var(--ink);
+  }
+
+  body {
+    @apply font-body;
+    font-weight: 300;
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    color: var(--mist);
+    background: var(--cream);
+    margin: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: var(--coral);
+    color: var(--cream);
+  }
+
+  h1, h2, h3 {
+    @apply font-display;
+    font-weight: 500;
+    color: var(--ink);
+    text-wrap: balance;
+  }
+
+  p { text-wrap: pretty; }
+
+  a { color: inherit; text-decoration: none; }
+
+  img, picture, video { display: block; max-width: 100%; height: auto; }
+
+  button { font: inherit; color: inherit; background: none; border: none; cursor: pointer; padding: 0; }
+
+  :focus-visible {
+    outline: 2px solid var(--coral);
+    outline-offset: 3px;
+    border-radius: 1px;
+  }
+
+  input, textarea, select {
+    @apply font-body;
+    background: var(--panel);
+  }
+}
+
+/* ── Components ───────────────────────────────────────────── */
+@layer components {
+
+  .wrap {
+    @apply mx-auto px-6 md:px-12 lg:px-20;
+    max-width: 1440px;
+  }
+
+  .wrap-narrow {
+    @apply mx-auto px-6 md:px-10;
+    max-width: 880px;
+  }
+
+  /* Eyebrow — wide-tracked uppercase label (Habitas register) */
+  .eyebrow {
+    @apply font-body uppercase;
+    font-size: 0.6875rem;
+    font-weight: 400;
+    letter-spacing: 0.22em;
+    color: var(--coral);
+  }
+  .eyebrow-quiet {
+    @apply font-body uppercase;
+    font-size: 0.6875rem;
+    font-weight: 400;
+    letter-spacing: 0.22em;
+    color: var(--faint);
+  }
+
+  /* Thin centered rule under serif headlines (Habitas) */
+  .rule {
+    width: 3.5rem;
+    height: 1px;
+    background: var(--stone);
+    opacity: 0.5;
+  }
+
+  /* CTA system — one solid per viewport, rest quiet */
+  .btn-solid {
+    @apply font-body inline-flex items-center justify-center uppercase transition-colors;
+    background: var(--ink);
+    color: var(--cream);
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.22em;
+    padding: 1.05rem 2.4rem;
+    transition: background var(--duration-medium) var(--ease-soft);
+  }
+  .btn-solid:hover { background: var(--coral-deep); }
+
+  .btn-outline {
+    @apply font-body inline-flex items-center justify-center uppercase transition-colors;
+    background: transparent;
+    color: var(--ink);
+    border: 1px solid var(--ink);
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.22em;
+    padding: 1rem 2.4rem;
+    transition: all var(--duration-medium) var(--ease-soft);
+  }
+  .btn-outline:hover { background: var(--ink); color: var(--cream); }
+
+  /* Underlined letterspaced text link (Habitas DISCOVER pattern) */
+  .link-discover {
+    @apply font-body uppercase inline-flex items-center;
+    font-size: 0.71875rem;
+    font-weight: 400;
+    letter-spacing: 0.22em;
+    color: var(--ink);
+    padding-bottom: 0.45rem;
+    border-bottom: 1px solid var(--stone);
+    transition: color var(--duration-medium), border-color var(--duration-medium);
+  }
+  .link-discover:hover { color: var(--coral-deep); border-color: var(--coral); }
+
+  /* Section rhythm — premium breathing room */
+  .section { @apply py-24 md:py-32 lg:py-36; }
+  .section-tight { @apply py-16 md:py-24; }
+
+  /* legacy class aliases for not-yet-reskinned components */
+  .btn-primary { @apply btn-solid; }
+  .btn-secondary { @apply btn-outline; }
+  .link-soft { @apply link-discover; }
+  .link-quiet { @apply eyebrow-quiet; }
+}
+
+/* ── Utilities ────────────────────────────────────────────── */
+@layer utilities {
+  .balance { text-wrap: balance; }
+  .pretty { text-wrap: pretty; }
+
+  .will-reveal {
+    transition: opacity 800ms var(--ease-out), transform 800ms var(--ease-out);
+  }
+  /* Content is hidden ONLY after JS confirms it can reveal it (html.reveal-on,
+     set by an inline head script before paint). If JS never runs, or the
+     observer misses an element, content stays visible — the scroll reveal is a
+     pure enhancement and can never leave a permanent blank block. */
+  .reveal-on .will-reveal:not(.is-revealed) {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  .ambient-zoom {
+    animation: ambient-zoom 16s ease-in-out infinite alternate;
+    transform-origin: center;
+    will-change: transform;
+  }
+
+  .aspect-casa { aspect-ratio: 4 / 5; }
+  .aspect-wide { aspect-ratio: 3 / 2; }
+
+  /* horizontal scroll-snap rail (casa carousel) */
+  .rail {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .rail::-webkit-scrollbar { display: none; }
+  .rail > * { scroll-snap-align: start; }
+}
+
+/* ── Reduced motion ───────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .ambient-zoom { animation: none !important; }
+  .will-reveal { opacity: 1 !important; transform: none !important; }
+}

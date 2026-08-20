@@ -1,0 +1,62 @@
+---
+// ─────────────────────────────────────────────────────────────
+// PropertyMap — the house as a simple elevation: three floors
+// around the courtyard, each cell a link to its casa. Pure
+// HTML/CSS, no JS. Floor/unit data is fixed (1A–3B).
+// ─────────────────────────────────────────────────────────────
+import { getContent, ui, localizePath, resolveLocale, type Locale } from '@i18n';
+
+interface Props {
+  lang?: Locale;
+}
+
+const locale = resolveLocale(Astro.props.lang ?? Astro.currentLocale);
+const u = ui(locale);
+const { suites } = getContent(locale);
+const bySlug = Object.fromEntries(suites.map((s) => [s.slug, s]));
+
+// Top floor first — reads as a building elevation, courtyard as the plinth.
+const FLOORS = [
+  { label: u.map.top, casas: ['casa-bel', 'casa-peach'] },      // 3A · 3B
+  { label: u.map.second, casas: ['casa-linda', 'casa-yada'] },  // 2A · 2B
+  { label: u.map.ground, casas: ['casa-mia', 'casa-keiki'] },   // 1A · 1B
+];
+---
+
+<section class="section-tight bg-cream-deep">
+  <div class="wrap-narrow">
+    <p class="eyebrow text-center will-reveal">{u.map.eyebrow}</p>
+    <h2 class="mt-5 font-display font-medium text-ink text-center balance will-reveal" style="font-size: clamp(1.75rem, 3.5vw, 2.5rem);">
+      {u.map.title}
+    </h2>
+
+    <div class="mt-12 border border-line bg-cream will-reveal">
+      {FLOORS.map((floor) => (
+        <div class="grid sm:grid-cols-[7.5rem,1fr,1fr] border-b border-line">
+          <div class="flex items-center justify-center sm:justify-start px-5 py-3 sm:py-0 border-b sm:border-b-0 sm:border-r border-line">
+            <span class="font-mono text-[10px] uppercase tracking-[0.16em] text-faint">{floor.label}</span>
+          </div>
+          {floor.casas.map((slug, i) => (
+            <a
+              href={localizePath(`/suites/${slug}`, locale)}
+              class:list={[
+                'group block px-4 py-6 md:py-7 text-center transition-colors duration-500 hover:bg-cream-deep',
+                i === 1 && 'border-l border-line',
+              ]}
+            >
+              <span class="font-body uppercase text-ink text-[0.8125rem] tracking-eyebrow group-hover:text-coral-deep transition-colors">
+                {bySlug[slug].name}
+              </span>
+              <span class="mt-1.5 block font-mono text-[10px] uppercase tracking-[0.16em] text-faint">
+                {bySlug[slug].sleeps.split('·')[0].trim()}
+              </span>
+            </a>
+          ))}
+        </div>
+      ))}
+      <div class="py-3.5 text-center bg-cream-deep">
+        <span class="font-mono text-[10px] uppercase tracking-[0.22em] text-stone">{u.map.courtyard}</span>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,93 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { getContent, ui, localizePath, resolveLocale, type Locale } from '@i18n';
+
+const locale = resolveLocale((Astro.props as { lang?: Locale }).lang ?? Astro.currentLocale);
+const { extras, tours, toursMore } = getContent(locale);
+const u = ui(locale);
+const contactHref = localizePath('/contact', locale) + '#inquire';
+---
+
+<BaseLayout title={u.extras.title} description={u.extras.intro} lang={locale}>
+  <!-- Header -->
+  <section class="pt-32 md:pt-40 pb-4 md:pb-8">
+    <div class="wrap text-center">
+      <p class="eyebrow">{u.extras.eyebrow}</p>
+      <h1 class="mt-5 font-display font-medium text-ink leading-[1.05]" style="font-size: clamp(2.5rem, 5.5vw, 4rem);">
+        {u.extras.title}
+      </h1>
+      <p class="mt-6 font-body font-light text-mist text-lg max-w-measure mx-auto pretty">
+        {u.extras.intro}
+      </p>
+    </div>
+  </section>
+
+  <!-- Rentals -->
+  <section class="section-tight">
+    <div class="wrap">
+      <div class="grid gap-10 sm:gap-14 sm:grid-cols-2 max-w-3xl mx-auto">
+        {extras.map((x) => (
+          <article class="will-reveal">
+            {x.images.length >= 2 ? (
+              <div class="grid grid-cols-2 gap-2">
+                {x.images.slice(0, 2).map((img) => (
+                  <div class="overflow-hidden bg-cream-deep aspect-square">
+                    <img src={img.src} alt={img.alt} loading="lazy" class="w-full h-full object-cover" />
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div class="overflow-hidden bg-cream-deep aspect-[4/3]">
+                {x.images.length ? (
+                  <img src={x.images[0].src} alt={x.images[0].alt} loading="lazy" class="w-full h-full object-cover" />
+                ) : (
+                  <div class="w-full h-full flex items-center justify-center text-center px-6">
+                    <span class="font-mono text-[10px] uppercase tracking-[0.18em] text-mist/70">{u.extras.photoSoon}</span>
+                  </div>
+                )}
+              </div>
+            )}
+            <div class="pt-6">
+              <div class="flex items-baseline justify-between gap-4">
+                <h2 class="font-body uppercase text-ink text-sm tracking-eyebrow font-normal">{x.name}</h2>
+                {x.qty > 0 && (
+                  <span class="font-mono text-[10px] uppercase tracking-widest text-mist/60 whitespace-nowrap">{x.qty} {u.extras.available}</span>
+                )}
+              </div>
+              <p class="mt-3 font-body font-light text-mist text-[0.9375rem] leading-relaxed pretty">{x.essence}</p>
+              <p class="mt-2 font-body font-light text-mist/80 text-sm leading-relaxed pretty">{x.detail}</p>
+              {x.priceLine && <p class="mt-4 font-display text-ink text-lg">{x.priceLine}</p>}
+              <a href={contactHref} class="link-discover mt-5 inline-block !text-[0.65rem]">{u.extras.addToStay}</a>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <!-- Tours — typographic menu -->
+      {tours.length > 0 && (
+        <div class="mt-20 md:mt-28 max-w-3xl mx-auto">
+          <div class="text-center mb-10 md:mb-14">
+            <p class="eyebrow">{u.extras.toursTitle}</p>
+            <p class="mt-5 font-body font-light text-mist text-lg max-w-measure mx-auto pretty">{u.extras.toursIntro}</p>
+          </div>
+
+          <ul class="border-t border-line">
+            {tours.map((t) => (
+              <li class="grid gap-1 sm:gap-6 sm:grid-cols-[minmax(11rem,14rem)_1fr] items-baseline py-5 border-b border-line will-reveal">
+                <span class="font-body uppercase text-ink text-[0.8125rem] tracking-eyebrow">{t.name}</span>
+                <span class="font-body font-light text-mist text-[0.9375rem] leading-relaxed pretty">{t.line}</span>
+              </li>
+            ))}
+          </ul>
+
+          <p class="mt-8 font-body font-light text-mist/80 text-sm leading-relaxed pretty text-center max-w-measure mx-auto">{toursMore}</p>
+          <div class="mt-8 text-center">
+            <a href={contactHref} class="btn-solid !py-3.5 !px-7 text-[0.6875rem]">{u.extras.toursCta}</a>
+          </div>
+        </div>
+      )}
+
+      <p class="mt-16 text-center font-body font-light text-mist/80 text-sm max-w-measure mx-auto">{u.extras.footnote}</p>
+    </div>
+  </section>
+</BaseLayout>

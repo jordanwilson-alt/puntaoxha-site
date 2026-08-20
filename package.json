@@ -1,0 +1,35 @@
+{
+  "name": "sozo-stays-template",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Sozo Stays — reusable Astro template for boutique multi-suite vacation properties. Configure per client via env vars + content/[client].json.",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "lodgify": "node scripts/fetch-lodgify.mjs",
+    "prebuild": "node scripts/fetch-lodgify.mjs",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "check": "astro check"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.4",
+    "@astrojs/tailwind": "^5.1.4",
+    "astro": "^4.16.18",
+    "embla-carousel": "^8.5.1",
+    "lenis": "^1.1.20",
+    "motion": "^11.15.0",
+    "photoswipe": "^5.4.4",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.7.2"
+  },
+  "devDependencies": {
+    "@tailwindcss/forms": "^0.5.10",
+    "@tailwindcss/typography": "^0.5.15"
+  },
+  "engines": {
+    "node": ">=18.17.0"
+  }
+}

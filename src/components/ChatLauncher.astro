@@ -1,0 +1,120 @@
+---
+// ─────────────────────────────────────────────────────────────
+// ChatLauncher — bottom-right floating launcher.
+// Opens a slide-up panel with a single text input that posts
+// to the n8n web-chat webhook. Renders responses inline.
+// ─────────────────────────────────────────────────────────────
+import { webhooks, site } from '@lib/env';
+---
+
+<aside
+  data-chat
+  class="fixed bottom-5 right-5 md:bottom-8 md:right-8 z-30"
+  aria-label="Chat assistant"
+>
+  <!-- Launcher button -->
+  <button
+    type="button"
+    data-chat-toggle
+    aria-label="Open chat"
+    aria-expanded="false"
+    class="group h-14 w-14 md:h-16 md:w-16 rounded-full bg-ink-500 text-bone-50 shadow-medium flex items-center justify-center transition-transform duration-500 ease-organic hover:scale-105 hover:bg-coral-500 focus-visible:scale-105 data-[open=true]:rotate-90"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M21 11.5A8.38 8.38 0 0 1 12.5 20a8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7A8.38 8.38 0 0 1 4 11.5 8.5 8.5 0 0 1 12.5 3 8.38 8.38 0 0 1 21 11.5z" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+
+  <!-- Panel -->
+  <div
+    data-chat-panel
+    class="absolute bottom-full mb-4 right-0 w-[calc(100vw-2.5rem)] sm:w-96 max-w-md bg-bone-50 border border-sand-300 rounded-xl shadow-hero overflow-hidden origin-bottom-right scale-95 opacity-0 pointer-events-none transition-all duration-300 ease-organic data-[open=true]:scale-100 data-[open=true]:opacity-100 data-[open=true]:pointer-events-auto"
+    aria-hidden="true"
+  >
+    <div class="bg-ink-500 text-bone-50 px-5 py-4 flex items-center justify-between">
+      <div>
+        <p class="font-mono text-[10px] tracking-widest uppercase text-bone-50/60">Concierge</p>
+        <p class="font-display text-lg leading-tight">Ask {site.name}</p>
+      </div>
+      <button type="button" data-chat-close aria-label="Close chat" class="text-bone-50/70 hover:text-bone-50 transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6L6 18M6 6l12 12" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+
+    <div data-chat-log class="h-72 overflow-y-auto px-5 py-4 space-y-3 font-body text-sm">
+      <div class="bg-sand-100 rounded-lg px-4 py-3 max-w-[85%]">
+        <p>Hi — I'm the {site.name} assistant. Ask about availability, the area, or anything practical.</p>
+      </div>
+    </div>
+
+    <form data-chat-form class="border-t border-sand-300 flex">
+      <input
+        type="text"
+        name="message"
+        placeholder="Type a message..."
+        class="flex-1 form-input bg-transparent border-0 px-5 py-4 font-body text-sm focus:ring-0 placeholder:text-ink-400/50"
+        autocomplete="off"
+      />
+      <button type="submit" class="px-5 text-coral-500 hover:text-coral-700 transition-colors font-mono text-xs uppercase tracking-widest">
+        Send
+      </button>
+    </form>
+  </div>
+</aside>
+
+<script define:vars={{ webhook: webhooks.chat }}>
+  const toggle = document.querySelector('[data-chat-toggle]');
+  const panel = document.querySelector('[data-chat-panel]');
+  const close = document.querySelector('[data-chat-close]');
+  const form = document.querySelector('[data-chat-form]');
+  const log = document.querySelector('[data-chat-log]');
+  let open = false;
+
+  const setOpen = (v) => {
+    open = v;
+    toggle?.setAttribute('data-open', String(v));
+    toggle?.setAttribute('aria-expanded', String(v));
+    panel?.setAttribute('data-open', String(v));
+    panel?.setAttribute('aria-hidden', String(!v));
+  };
+
+  toggle?.addEventListener('click', () => setOpen(!open));
+  close?.addEventListener('click', () => setOpen(false));
+
+  const appendMsg = (text, who) => {
+    if (!log) return;
+    const wrap = document.createElement('div');
+    wrap.className = who === 'me'
+      ? 'bg-ink-500 text-bone-50 rounded-lg px-4 py-3 max-w-[85%] ml-auto'
+      : 'bg-sand-100 rounded-lg px-4 py-3 max-w-[85%]';
+    wrap.textContent = text;
+    log.appendChild(wrap);
+    log.scrollTop = log.scrollHeight;
+  };
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const input = form.querySelector('input[name="message"]');
+    const text = input?.value?.trim();
+    if (!text) return;
+    appendMsg(text, 'me');
+    input.value = '';
+
+    if (!webhook) {
+      appendMsg("Chat isn't connected yet — but Irving and the team always reply by email or WhatsApp within hours.", 'them');
+      return;
+    }
+
+    try {
+      const res = await fetch(webhook, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: text, source: 'web-chat' }),
+      });
+      const data = await res.json().catch(() => ({}));
+      appendMsg(data.reply ?? 'Thanks — we got your message and will get back to you shortly.', 'them');
+    } catch {
+      appendMsg('Something went wrong sending that. Try email or WhatsApp instead?', 'them');
+    }
+  });
+</script>

@@ -1,0 +1,72 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import InquiryForm from '@components/InquiryForm.astro';
+import { contact } from '@lib/env';
+import { ui, resolveLocale, type Locale } from '@i18n';
+
+const locale = resolveLocale((Astro.props as { lang?: Locale }).lang ?? Astro.currentLocale);
+const u = ui(locale);
+const title = u.pages.contact.eyebrow;
+const description = u.pages.contact.intro;
+const preselectSuite = Astro.url.searchParams.get('suite') ?? undefined;
+---
+
+<BaseLayout {title} {description} lang={locale}>
+  <!-- Header -->
+  <section class="pt-32 md:pt-40 pb-12 md:pb-16">
+    <div class="wrap-narrow text-center">
+      <p class="text-coral-500 font-medium tracking-wide uppercase text-xs md:text-sm mb-4">
+        {u.pages.contact.eyebrow}
+      </p>
+      <h1 class="font-display font-bold text-4xl md:text-5xl lg:text-6xl text-ink-500 tracking-tight balance leading-tight">
+        {u.pages.contact.title}
+      </h1>
+      <p class="mt-6 font-body text-lg md:text-xl text-ink-400 leading-relaxed max-w-xl mx-auto">
+        {u.pages.contact.intro}
+      </p>
+    </div>
+  </section>
+
+  <!-- Contact methods -->
+  <section class="pb-8 md:pb-12">
+    <div class="wrap">
+      <div class="grid gap-6 md:grid-cols-3">
+        {contact.whatsappNumber && (
+          <a
+            href={`https://wa.me/${contact.whatsappNumber.replace(/[^\d]/g, '')}`}
+            target="_blank"
+            rel="noopener"
+            class="block bg-white border border-sand-200 rounded-lg p-7 hover:border-coral-300 transition-colors will-reveal"
+          >
+            <p class="text-coral-500 font-medium tracking-wide uppercase text-xs mb-3">WhatsApp</p>
+            <p class="font-display font-bold text-lg md:text-xl text-ink-500 break-all">
+              {contact.whatsappNumber}
+            </p>
+            <p class="mt-2 text-sm text-ink-400">{u.pages.contact.waSub}</p>
+          </a>
+        )}
+        <a href={`mailto:${contact.email}`} class="block bg-white border border-sand-200 rounded-lg p-7 hover:border-coral-300 transition-colors will-reveal">
+          <p class="text-coral-500 font-medium tracking-wide uppercase text-xs mb-3">Email</p>
+          <p class="font-display font-bold text-lg md:text-xl text-ink-500 break-all">
+            {contact.email}
+          </p>
+          <p class="mt-2 text-sm text-ink-400">{u.pages.contact.emailSub}</p>
+        </a>
+        <a href={contact.instagram.url} target="_blank" rel="noopener" class="block bg-white border border-sand-200 rounded-lg p-7 hover:border-coral-300 transition-colors will-reveal">
+          <p class="text-coral-500 font-medium tracking-wide uppercase text-xs mb-3">Instagram</p>
+          <p class="font-display font-bold text-lg md:text-xl text-ink-500">
+            @{contact.instagram.handle}
+          </p>
+          <p class="mt-2 text-sm text-ink-400">{u.pages.contact.igSub}</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Inquiry form -->
+  <section class="section">
+    <div class="wrap-narrow">
+      <InquiryForm {preselectSuite} lang={locale} />
+    </div>
+  </section>
+</BaseLayout>

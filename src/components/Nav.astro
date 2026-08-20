@@ -1,0 +1,182 @@
+---
+// ─────────────────────────────────────────────────────────────
+// Nav — transparent over hero, cream after scroll, hide-on-scroll.
+// Listeners re-bind on astro:page-load + astro:after-swap so the
+// mobile menu survives View Transitions navigation (v2 bug fix).
+// `overHero` — only the homepage/full-bleed-hero pages flip to
+// cream text at top; everything else stays ink on cream.
+// ─────────────────────────────────────────────────────────────
+import Brand from './Brand.astro';
+import LanguageSwitcher from './LanguageSwitcher.astro';
+import { ui, localizePath, resolveLocale, type Locale } from '@i18n';
+
+interface Props {
+  overHero?: boolean;
+  lang?: Locale;
+}
+const { overHero = false, lang } = Astro.props;
+const locale = resolveLocale(lang ?? Astro.currentLocale);
+const u = ui(locale);
+
+const links = [
+  { href: localizePath('/suites', locale), label: u.nav.casas },
+  { href: localizePath('/the-area', locale), label: u.nav.area },
+  { href: localizePath('/extras', locale), label: u.nav.extras },
+  { href: localizePath('/about', locale), label: u.nav.about },
+  { href: localizePath('/contact', locale), label: u.nav.contact },
+];
+const homeHref = localizePath('/', locale);
+const bookHref = localizePath('/#book', locale);
+
+const path = Astro.url.pathname;
+const isActive = (href: string) => path.startsWith(href);
+---
+
+<header
+  data-nav
+  data-state="visible"
+  data-over-hero={overHero ? 'true' : 'false'}
+  class="fixed inset-x-0 top-0 z-40 transition-transform duration-500 ease-soft data-[state=hidden]:-translate-y-full"
+>
+  <div class="relative">
+    <div
+      aria-hidden="true"
+      data-nav-bg
+      class="absolute inset-0 -z-10 bg-cream/95 backdrop-blur-sm border-b border-line opacity-0 transition-opacity duration-500"
+    ></div>
+
+    <div class="wrap grid grid-cols-[1fr_auto_1fr] items-center gap-4 py-5 md:py-6">
+      <!-- Left: first links (desktop) + hamburger (mobile) -->
+      <div class="flex items-center justify-start">
+        <nav class="hidden lg:flex items-center gap-9 xl:gap-10" aria-label="Primary">
+          {links.slice(0, 3).map((link) => (
+            <a
+              href={link.href}
+              class:list={[
+                'eyebrow-quiet transition-colors duration-300 hover:!text-coral whitespace-nowrap',
+                isActive(link.href) && '!text-coral',
+              ]}
+              data-nav-link
+            >
+              {link.label}
+            </a>
+          ))}
+        </nav>
+        <button
+          type="button"
+          data-nav-toggle
+          aria-label="Open menu"
+          aria-expanded="false"
+          class="lg:hidden flex flex-col gap-[7px] p-2 -ml-2"
+        >
+          <span class="block h-px w-7 bg-current transition-transform" data-nav-line></span>
+          <span class="block h-px w-7 bg-current transition-opacity" data-nav-line></span>
+        </button>
+      </div>
+
+      <!-- Center: brand -->
+      <div class="flex justify-center" data-nav-brand>
+        <Brand size="md" href={homeHref} />
+      </div>
+
+      <!-- Right: remaining links + lang + book -->
+      <div class="flex items-center justify-end gap-5 md:gap-6 xl:gap-8">
+        <nav class="hidden lg:flex items-center gap-9 xl:gap-10" aria-label="Primary">
+          {links.slice(3).map((link) => (
+            <a
+              href={link.href}
+              class:list={[
+                'eyebrow-quiet transition-colors duration-300 hover:!text-coral whitespace-nowrap',
+                isActive(link.href) && '!text-coral',
+              ]}
+              data-nav-link
+            >
+              {link.label}
+            </a>
+          ))}
+        </nav>
+        <LanguageSwitcher lang={locale} class="hidden sm:inline-flex" />
+        <a href={bookHref} class="btn-solid !py-3 !px-5 text-[0.6875rem] whitespace-nowrap" data-nav-book>
+          {u.nav.book}
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile menu panel -->
+  <div
+    data-nav-panel
+    class="lg:hidden fixed inset-0 z-30 bg-cream translate-x-full transition-transform duration-500 ease-soft"
+    aria-hidden="true"
+  >
+    <div class="flex flex-col h-full pt-32 pb-14 px-10">
+      <nav class="flex-1 flex flex-col gap-9" aria-label="Mobile">
+        {links.map((link) => (
+          <a href={link.href} class="font-display text-4xl text-ink hover:text-coral-deep transition-colors">
+            {link.label}
+          </a>
+        ))}
+      </nav>
+      <LanguageSwitcher lang={locale} class="mb-7 !text-sm" />
+      <a href={bookHref} class="btn-solid w-full">{u.nav.bookStay}</a>
+    </div>
+  </div>
+</header>
+
+<script>
+  // Re-bindable init — runs on first load AND after every View
+  // Transitions swap. Guards against double-binding via dataset flag.
+  const initNav = () => {
+    const header = document.querySelector<HTMLElement>('[data-nav]');
+    const bg = document.querySelector<HTMLElement>('[data-nav-bg]');
+    const toggle = document.querySelector<HTMLButtonElement>('[data-nav-toggle]');
+    const panel = document.querySelector<HTMLElement>('[data-nav-panel]');
+    if (!header || header.dataset.bound === 'true') return;
+    header.dataset.bound = 'true';
+
+    const updateBg = () => {
+      if (bg) bg.style.opacity = window.scrollY > 60 ? '1' : '0';
+      // only pages with a full-bleed hero flip to cream text at top
+      const heroPage = header.dataset.overHero === 'true';
+      header.classList.toggle('nav-over-hero', heroPage && window.scrollY <= 60);
+    };
+    window.addEventListener('scroll', updateBg, { passive: true });
+    updateBg();
+
+    let open = false;
+    const setOpen = (v: boolean) => {
+      open = v;
+      panel?.classList.toggle('translate-x-full', !open);
+      panel?.setAttribute('aria-hidden', String(!open));
+      toggle?.setAttribute('aria-expanded', String(open));
+      document.body.style.overflow = open ? 'hidden' : '';
+    };
+
+    toggle?.addEventListener('click', () => setOpen(!open));
+    panel?.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setOpen(false)));
+  };
+
+  initNav();
+  document.addEventListener('astro:page-load', initNav);
+  document.addEventListener('astro:after-swap', () => {
+    // fresh DOM after swap — clear stale bound flag then re-init
+    const header = document.querySelector<HTMLElement>('[data-nav]');
+    if (header) header.dataset.bound = 'false';
+    initNav();
+  });
+</script>
+
+<style is:global>
+  /* Over the hero the nav floats on photography — flip to cream text */
+  [data-nav].nav-over-hero [data-nav-link],
+  [data-nav].nav-over-hero [data-nav-toggle] { color: var(--cream); }
+  [data-nav].nav-over-hero [data-nav-brand] span { color: var(--cream); }
+  [data-nav].nav-over-hero [data-nav-book] {
+    background: var(--cream);
+    color: var(--ink);
+  }
+  [data-nav].nav-over-hero [data-nav-book]:hover {
+    background: var(--coral);
+    color: var(--cream);
+  }
+</style>

@@ -1,0 +1,54 @@
+/* ─────────────────────────────────────────────────────────────
+   Punta Ox Ha — Design Tokens v2 (Premium / Community-Led)
+   Single source of truth. Tailwind reads these via var() refs.
+   Spec: /sozo-stays/design/visual-language-v2.md
+   ───────────────────────────────────────────────────────────── */
+
+:root {
+  /* ── Surfaces ─────────────────────────────────────────── */
+  --cream:       #FBF6EF;   /* page background — warm, never white */
+  --cream-deep:  #F4ECE1;   /* alternating section band */
+  --panel:       #FFFFFF;   /* rare card surfaces */
+
+  /* ── Ink ──────────────────────────────────────────────── */
+  --ink:         #2D2A24;   /* near-black warm ink — headlines on light, solid CTAs */
+  --stone:       #8A7A64;   /* serif display taupe */
+  --mist:        #6E6759;   /* body text */
+  --faint:       #A99E8C;   /* captions, fine print */
+
+  /* ── Accent — antique GOLD from the Punta Ox Ha medallion ──
+     (The old coral #F0523D came from their Squarespace theme, not
+     the logo. Logo = black + antique gold + silver. The --coral*
+     names are kept as back-compat aliases so existing `coral-*`
+     Tailwind classes across the site now render gold — no per-file
+     edits needed. Canonical names are --gold / --gold-deep.) */
+  --gold:        #A07E2B;   /* primary accent — deep antique gold */
+  --gold-deep:   #7C5F1E;   /* hover / solid-fill accent */
+  --coral:       var(--gold);
+  --coral-deep:  var(--gold-deep);
+
+  /* ── Lines ────────────────────────────────────────────── */
+  --line:        #E3D9C9;
+
+  /* ── Motion ───────────────────────────────────────────── */
+  --duration-fast: 180ms;
+  --duration-medium: 320ms;
+  --duration-slow: 560ms;
+  --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-organic: cubic-bezier(0.6, 0, 0.2, 1);
+
+  /* ── Legacy aliases (v2 components not yet re-skinned) ── */
+  --surface-page: var(--cream);
+  --surface-panel: var(--panel);
+  --text-primary: var(--ink);
+  --text-secondary: var(--mist);
+  --text-muted: var(--faint);
+  --text-accent: var(--coral);
+  --border-soft: var(--line);
+  --cta-primary-bg: var(--ink);
+  --cta-primary-fg: var(--cream);
+  --cta-primary-hover: var(--coral-deep);
+  --cta-soft-fg: var(--coral-deep);
+  --cta-soft-underline: var(--coral);
+}

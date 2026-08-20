@@ -1,0 +1,79 @@
+---
+// ─────────────────────────────────────────────────────────────
+// LodgifySearchBar — real availability search + booking.
+// On-brand date/guest picker that forwards to the Lodgify booking
+// site (the channel manager handles availability, reservations,
+// and payment). Lodgify accepts dates via ?checkin/checkout/people,
+// so the chosen dates carry straight into the live results.
+// (Lodgify's own embeddable widget requires its full generated
+//  attribute blob; this deep-link form is the robust path.)
+// ─────────────────────────────────────────────────────────────
+import { booking } from '@content/punta-ox-ha';
+import { ui, resolveLocale, type Locale } from '@i18n';
+const { lang } = Astro.props as { lang?: Locale };
+const locale = resolveLocale(lang ?? Astro.currentLocale);
+const u = ui(locale);
+const today = new Date().toISOString().slice(0, 10);
+const inputCls =
+  'form-input bg-white border border-sand-300 rounded-md px-4 py-3 font-body text-base focus:border-coral-500 focus:ring-1 focus:ring-coral-500/30 transition-colors';
+---
+
+<form
+  data-lodgify-book
+  data-search-url={booking.searchUrl}
+  class="mx-auto max-w-3xl grid gap-3 md:grid-cols-12 items-end text-left"
+  aria-label="Check availability and book"
+>
+  <label class="md:col-span-3 flex flex-col gap-2">
+    <span class="text-sm font-medium text-ink">{u.book.arrive}</span>
+    <input type="date" name="checkin" min={today} required class={inputCls} />
+  </label>
+  <label class="md:col-span-3 flex flex-col gap-2">
+    <span class="text-sm font-medium text-ink">{u.book.depart}</span>
+    <input type="date" name="checkout" min={today} required class={inputCls} />
+  </label>
+  <label class="md:col-span-3 flex flex-col gap-2">
+    <span class="text-sm font-medium text-ink">{u.book.guests}</span>
+    <select name="people" class={inputCls}>
+      {[1, 2, 3, 4, 5, 6, 7, 8].map((n) => (
+        <option value={n} selected={n === 2}>{n} {n === 1 ? u.book.guest : u.book.guestsPl}</option>
+      ))}
+    </select>
+  </label>
+  <div class="md:col-span-3">
+    <button type="submit" class="btn-solid w-full text-base py-3.5">{u.book.cta}</button>
+  </div>
+</form>
+
+<p class="mt-5 text-center text-sm text-mist">
+  {u.book.helper}{' '}
+  <a href={booking.searchUrl} target="_blank" rel="noopener" class="text-coral underline underline-offset-2 hover:text-coral-deep">
+    {u.book.browseAll}
+  </a>
+</p>
+
+<script>
+  const bindBooking = () => {
+    document.querySelectorAll<HTMLFormElement>('form[data-lodgify-book]').forEach((form) => {
+      if (form.dataset.bound) return;
+      form.dataset.bound = 'true';
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const base = form.dataset.searchUrl || 'https://punta-ox-ha.lodgify.com/en/all-suites';
+        const data = new FormData(form);
+        const checkin = String(data.get('checkin') || '');
+        const checkout = String(data.get('checkout') || '');
+        const people = String(data.get('people') || '');
+        const params = new URLSearchParams();
+        if (checkin) params.set('checkin', checkin);
+        if (checkout) params.set('checkout', checkout);
+        if (people) params.set('people', people);
+        const qs = params.toString();
+        window.open(qs ? `${base}?${qs}` : base, '_blank', 'noopener');
+      });
+    });
+  };
+  bindBooking();
+  document.addEventListener('astro:after-swap', bindBooking);
+  document.addEventListener('astro:page-load', bindBooking);
+</script>

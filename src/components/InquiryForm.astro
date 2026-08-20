@@ -1,0 +1,182 @@
+---
+// ─────────────────────────────────────────────────────────────
+// InquiryForm — single-page booking form.
+// Clean, warm, matches Punta Ox Ha brand.
+// ─────────────────────────────────────────────────────────────
+import { getContent } from '@i18n';
+import { ui, localizePath, resolveLocale, type Locale } from '@i18n';
+
+interface Props {
+  preselectSuite?: string;
+  lang?: Locale;
+}
+
+const { preselectSuite, lang } = Astro.props;
+const locale = resolveLocale(lang ?? Astro.currentLocale);
+const u = ui(locale);
+const { suites } = getContent(locale);
+const thanksUrl = localizePath('/thanks', locale);
+---
+
+<section id="inquire" class="will-reveal">
+  <div class="text-center mb-10">
+    <p class="text-coral-500 font-medium tracking-wide uppercase text-xs md:text-sm mb-3">
+      {u.form.eyebrow}
+    </p>
+    <h2 class="font-display font-bold text-3xl md:text-4xl text-ink-500 tracking-tight balance leading-tight">
+      {u.form.title}
+    </h2>
+    <p class="mt-4 font-body text-base md:text-lg text-ink-400">
+      {u.form.sub}
+    </p>
+  </div>
+
+  <form
+    method="post"
+    data-thanks={thanksUrl}
+    class="grid gap-5 md:grid-cols-12 bg-sand-50 border border-sand-200 rounded-lg p-7 md:p-10"
+    aria-label="Booking inquiry"
+  >
+    <!-- Dates -->
+    <label class="md:col-span-3 flex flex-col gap-2">
+      <span class="text-sm font-medium text-ink-500">{u.form.arrive}</span>
+      <input
+        type="date"
+        name="arrive"
+        required
+        class="form-input bg-white border border-sand-300 rounded-md px-4 py-3 font-body text-base focus:border-coral-500 focus:ring-1 focus:ring-coral-500/30 transition-colors"
+      />
+    </label>
+    <label class="md:col-span-3 flex flex-col gap-2">
+      <span class="text-sm font-medium text-ink-500">{u.form.depart}</span>
+      <input
+        type="date"
+        name="depart"
+        required
+        class="form-input bg-white border border-sand-300 rounded-md px-4 py-3 font-body text-base focus:border-coral-500 focus:ring-1 focus:ring-coral-500/30 transition-colors"
+      />
+    </label>
+    <label class="md:col-span-3 flex flex-col gap-2">
+      <span class="text-sm font-medium text-ink-500">{u.form.guests}</span>
+      <select
+        name="guests"
+        required
+        class="form-select bg-white border border-sand-300 rounded-md px-4 py-3 font-body text-base focus:border-coral-500 focus:ring-1 focus:ring-coral-500/30 transition-colors"
+      >
+        {[1, 2, 3, 4, 5, 6, 7, 8, 10, 12, 14, 16].map((n) => (
+          <option value={n} selected={n === 2}>{n} {n > 1 ? u.form.guestsPl : u.form.guest}</option>
+        ))}
+      </select>
+    </label>
+    <label class="md:col-span-3 flex flex-col gap-2">
+      <span class="text-sm font-medium text-ink-500">{u.form.preferredSuite}</span>
+      <select
+        name="suite"
+        class="form-select bg-white border border-sand-300 rounded-md px-4 py-3 font-body text-base focus:border-coral-500 focus:ring-1 focus:ring-coral-500/30 transition-colors"
+      >
+        <option value="">{u.form.noPreference}</option>
+        {suites.map((s) => (
+          <option value={s.slug} selected={s.slug === preselectSuite}>{s.name}</option>
+        ))}
+        <option value="whole-property" selected={preselectSuite === 'whole-property'}>{u.form.wholeProperty}</option>
+      </select>
+    </label>
+
+    <!-- Contact -->
+    <label class="md:col-span-4 flex flex-col gap-2">
+      <span class="text-sm font-medium text-ink-500">{u.form.name}</span>
+      <input
+        type="text"
+        name="name"
+        required
+        autocomplete="name"
+        class="form-input bg-white border border-sand-300 rounded-md px-4 py-3 font-body text-base focus:border-coral-500 focus:ring-1 focus:ring-coral-500/30 transition-colors"
+      />
+    </label>
+    <label class="md:col-span-4 flex flex-col gap-2">
+      <span class="text-sm font-medium text-ink-500">{u.form.email}</span>
+      <input
+        type="email"
+        name="email"
+        required
+        autocomplete="email"
+        class="form-input bg-white border border-sand-300 rounded-md px-4 py-3 font-body text-base focus:border-coral-500 focus:ring-1 focus:ring-coral-500/30 transition-colors"
+      />
+    </label>
+    <label class="md:col-span-4 flex flex-col gap-2">
+      <span class="text-sm font-medium text-ink-500">{u.form.phone}</span>
+      <input
+        type="tel"
+        name="phone"
+        autocomplete="tel"
+        class="form-input bg-white border border-sand-300 rounded-md px-4 py-3 font-body text-base focus:border-coral-500 focus:ring-1 focus:ring-coral-500/30 transition-colors"
+      />
+    </label>
+
+    <!-- Message -->
+    <label class="md:col-span-12 flex flex-col gap-2">
+      <span class="text-sm font-medium text-ink-500">{u.form.note}</span>
+      <textarea
+        name="message"
+        rows="4"
+        placeholder={u.form.placeholder}
+        class="form-textarea bg-white border border-sand-300 rounded-md px-4 py-3 font-body text-base focus:border-coral-500 focus:ring-1 focus:ring-coral-500/30 transition-colors resize-none"
+      ></textarea>
+    </label>
+
+    <div class="md:col-span-12 flex flex-wrap items-center justify-between gap-4 pt-2">
+      <p class="text-sm text-ink-400 max-w-md">
+        {u.form.footer}
+      </p>
+      <button type="submit" data-label={u.form.submit} data-sending={u.form.sending} class="btn-primary text-base px-8 py-3.5">
+        {u.form.submit}
+      </button>
+    </div>
+  </form>
+</section>
+
+<script>
+  import { webhooks } from '@lib/env';
+
+  // Pre-fill from URL params (?arrive=&depart=&guests=&suite=)
+  const params = new URLSearchParams(window.location.search);
+  ['arrive', 'depart', 'guests', 'suite'].forEach((key) => {
+    const val = params.get(key);
+    if (val) {
+      const el = document.querySelector<HTMLInputElement | HTMLSelectElement>(
+        `#inquire [name="${key}"]`
+      );
+      if (el) el.value = val;
+    }
+  });
+
+  // POST to n8n webhook (PUBLIC_ env — readable client-side)
+  const form = document.querySelector<HTMLFormElement>('#inquire form');
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!webhooks.inquiry) {
+      alert("Our inquiry system is being connected — for now, email us at puntaoxha@gmail.com or message us on WhatsApp and we'll reply within hours.");
+      return;
+    }
+    const submitBtn = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = submitBtn.dataset.sending || 'Sending…';
+    }
+    const data = Object.fromEntries(new FormData(form).entries());
+    try {
+      await fetch(webhooks.inquiry, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...data, source: 'web-inquiry' }),
+      });
+      window.location.assign(form.dataset.thanks || '/thanks');
+    } catch {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = submitBtn.dataset.label || 'Send Inquiry';
+      }
+      alert('Something went wrong sending that. Try email or WhatsApp instead?');
+    }
+  });
+</script>

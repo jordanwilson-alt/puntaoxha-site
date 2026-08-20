@@ -1,0 +1,100 @@
+---
+// ─────────────────────────────────────────────────────────────
+// Hero — full-viewport photo, slow ambient zoom, bottom-left
+// stack: eyebrow → serif display → subline → CTAs.
+// ─────────────────────────────────────────────────────────────
+import { hero, site } from '@lib/env';
+import { ui, localizePath, resolveLocale, type Locale } from '@i18n';
+
+interface Props {
+  imageUrl?: string;
+  videoUrl?: string;
+  headline?: string;
+  subline?: string;
+  eyebrow?: string;
+  lang?: Locale;
+}
+
+const { lang, imageUrl = hero.imageUrl, videoUrl = hero.videoUrl } = Astro.props;
+const locale = resolveLocale(lang ?? Astro.currentLocale);
+const u = ui(locale);
+const headline = Astro.props.headline ?? u.hero.headline;
+const subline = Astro.props.subline ?? u.hero.subline;
+const eyebrow = Astro.props.eyebrow ?? `${site.location} · ${site.region}`;
+const bookHref = localizePath('/#book', locale);
+const suitesHref = localizePath('/suites', locale);
+---
+
+<section class="relative isolate h-screen min-h-[640px] flex items-end overflow-hidden bg-ink">
+  <div class="absolute inset-0 -z-10">
+    {videoUrl ? (
+      <video
+        class="w-full h-full object-cover"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata"
+        poster={imageUrl}
+        aria-hidden="true"
+        data-hero-video
+      >
+        <source src={videoUrl} type="video/mp4" />
+      </video>
+    ) : (
+      <img
+        src={imageUrl}
+        alt=""
+        aria-hidden="true"
+        class="w-full h-full object-cover ambient-zoom"
+        loading="eager"
+        fetchpriority="high"
+      />
+    )}
+    <div aria-hidden="true" class="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-black/25"></div>
+  </div>
+
+  <div class="wrap pb-16 md:pb-24 w-full">
+    <p class="eyebrow !text-cream/80">{eyebrow}</p>
+    <h1
+      class="mt-5 font-display font-medium text-cream leading-[1.04] balance max-w-3xl"
+      style="font-size: clamp(3rem, 7vw, 5.5rem);"
+    >
+      {headline}
+    </h1>
+    {subline && (
+      <p class="mt-7 max-w-measure font-body font-light text-cream/90 text-lg leading-relaxed">
+        {subline}
+      </p>
+    )}
+    <div class="mt-10 flex flex-wrap items-center gap-6">
+      <a href={bookHref} class="btn-solid !bg-cream !text-ink hover:!bg-coral hover:!text-cream">
+        {u.nav.bookStay}
+      </a>
+      <a href={suitesHref} class="link-discover !text-cream !border-cream/50 hover:!text-cream hover:!border-coral">
+        {u.home.discoverAll}
+      </a>
+    </div>
+  </div>
+
+  <!-- scroll cue -->
+  <div class="absolute bottom-8 right-8 hidden md:flex flex-col items-center gap-3" aria-hidden="true">
+    <span class="eyebrow-quiet !text-cream/60">Scroll</span>
+    <span class="h-12 w-px bg-cream/40"></span>
+  </div>
+</section>
+
+<script>
+  // Respect prefers-reduced-motion: pause the ambient hero video,
+  // poster image stays as the visual.
+  const initHeroVideo = () => {
+    const video = document.querySelector<HTMLVideoElement>('[data-hero-video]');
+    if (!video) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      video.pause();
+      video.removeAttribute('autoplay');
+    }
+  };
+  initHeroVideo();
+  document.addEventListener('astro:page-load', initHeroVideo);
+</script>

@@ -1,0 +1,24 @@
+---
+// ─────────────────────────────────────────────────────────────
+// Eyebrow — mono uppercase section label.
+// Used above every section as visual rhythm + reading aid.
+// ─────────────────────────────────────────────────────────────
+interface Props {
+  number?: string;       // e.g. "01"
+  label: string;         // e.g. "COASTAL APARTMENTS"
+  soft?: boolean;        // muted color variant
+  as?: 'p' | 'span' | 'div';
+}
+
+const { number, label, soft = false, as: Tag = 'p' } = Astro.props;
+---
+
+<Tag class:list={[soft ? 'eyebrow-soft' : 'eyebrow', 'inline-flex items-center gap-3']}>
+  {number && (
+    <>
+      <span class="font-semibold">{number}</span>
+      <span aria-hidden="true" class="inline-block w-6 h-px bg-current opacity-50"></span>
+    </>
+  )}
+  <span>{label}</span>
+</Tag>

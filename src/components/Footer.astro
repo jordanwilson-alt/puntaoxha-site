@@ -1,0 +1,69 @@
+---
+// Footer — quiet, centered, cream-deep (premium register).
+import Brand from './Brand.astro';
+import { site, contact } from '@lib/env';
+import { ui, localizePath, resolveLocale, type Locale } from '@i18n';
+
+const { lang } = Astro.props as { lang?: Locale };
+const locale = resolveLocale(lang ?? Astro.currentLocale);
+const u = ui(locale);
+const year = new Date().getFullYear();
+const links = [
+  { href: localizePath('/suites', locale), label: u.nav.casas },
+  { href: localizePath('/the-area', locale), label: u.nav.area },
+  { href: localizePath('/extras', locale), label: u.nav.extras },
+  { href: localizePath('/about', locale), label: u.nav.about },
+  { href: localizePath('/contact', locale), label: u.nav.contact },
+];
+---
+
+<footer class="bg-cream-deep border-t border-line mt-28 md:mt-36">
+  <div class="wrap py-20 md:py-28 text-center">
+    <img
+      src="/brand/mark.png"
+      alt=""
+      aria-hidden="true"
+      width="72"
+      height="72"
+      loading="lazy"
+      class="mx-auto mb-7 w-16 md:w-[72px] h-auto"
+    />
+    <Brand size="lg" asLink={false} showMark={false} />
+
+    <p class="mt-6 font-display text-xl md:text-2xl text-stone italic max-w-xl mx-auto">
+      {u.footer.tagline}.
+    </p>
+
+    <nav class="mt-12 flex flex-wrap items-center justify-center gap-x-10 gap-y-4" aria-label="Footer">
+      {links.map((link) => (
+        <a href={link.href} class="eyebrow-quiet hover:!text-coral transition-colors">{link.label}</a>
+      ))}
+    </nav>
+
+    <div class="mt-12 space-y-2 font-body font-light text-sm text-mist">
+      <p>{site.location} · {site.region}</p>
+      <p>
+        <a href={`mailto:${contact.email}`} class="hover:text-coral-deep transition-colors">{contact.email}</a>
+        {contact.instagram.url && (
+          <>
+            <span class="mx-2 text-faint">·</span>
+            <a href={contact.instagram.url} target="_blank" rel="noopener" class="hover:text-coral-deep transition-colors">
+              @{contact.instagram.handle}
+            </a>
+          </>
+        )}
+      </p>
+      <p class="!mt-5 text-faint text-xs">{u.footer.bookDirect}</p>
+    </div>
+
+    <div class="mt-14 pt-8 border-t border-line flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-faint">
+      <p>© {year} {site.nameFull}</p>
+      <p>
+        {u.footer.siteBy}
+        <a href="https://instagram.com/sozostays" target="_blank" rel="noopener" class="underline underline-offset-2 decoration-faint hover:text-coral-deep transition-colors">
+          Sozo Stays
+        </a>
+      </p>
+    </div>
+  </div>
+</footer>

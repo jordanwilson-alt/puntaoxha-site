@@ -1,0 +1,63 @@
+---
+// Brand — logo slot (Irving's file when it arrives) or typeset wordmark.
+import { site } from '@lib/env';
+
+interface Props {
+  size?: 'sm' | 'md' | 'lg';
+  inverse?: boolean;
+  asLink?: boolean;
+  showMark?: boolean;
+  href?: string;
+}
+
+const { size = 'md', inverse = false, asLink = true, showMark = true, href = '/' } = Astro.props;
+
+// If a single bundled logo file is provided via env, prefer it. Otherwise
+// render the medallion mark + typeset wordmark.
+const useImage =
+  site.logoUrl &&
+  site.logoUrl !== '/brand/logo.svg' &&
+  !site.logoUrl.endsWith('placeholder.svg');
+
+const sizes = {
+  sm: { text: 'text-base', img: 'h-7', mark: 'h-6', gap: 'gap-2' },
+  md: { text: 'text-xl md:text-2xl', img: 'h-9 md:h-10', mark: 'h-8 md:h-9', gap: 'gap-2.5 md:gap-3' },
+  lg: { text: 'text-3xl md:text-4xl', img: 'h-12 md:h-14', mark: 'h-11 md:h-12', gap: 'gap-3' },
+};
+
+const cls = sizes[size];
+const Tag = asLink ? 'a' : 'div';
+---
+
+<Tag
+  {...asLink ? { href } : {}}
+  class:list={['inline-flex items-center transition-opacity', cls.gap, asLink && 'hover:opacity-70']}
+  aria-label={asLink ? `${site.nameFull} — home` : undefined}
+>
+  {useImage ? (
+    <img src={site.logoUrl} alt={site.logoAlt} class:list={[cls.img, 'w-auto']} width="140" height="44" />
+  ) : (
+    <Fragment>
+      {showMark && (
+        <img
+          src="/brand/mark.png"
+          alt=""
+          aria-hidden="true"
+          class:list={[cls.mark, 'w-auto shrink-0']}
+          width="40"
+          height="43"
+        />
+      )}
+      <span
+        class:list={[
+          'font-display font-medium uppercase',
+          cls.text,
+          inverse ? 'text-cream' : 'text-ink',
+        ]}
+        style="letter-spacing: 0.14em;"
+      >
+        Punta&nbsp;Ox&nbsp;Ha
+      </span>
+    </Fragment>
+  )}
+</Tag>

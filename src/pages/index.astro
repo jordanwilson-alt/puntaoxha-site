@@ -1,0 +1,126 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Hero from '@components/Hero.astro';
+import SuiteCard from '@components/SuiteCard.astro';
+import LodgifySearchBar from '@components/LodgifySearchBar.astro';
+import { getContent, ui, localizePath, resolveLocale, type Locale } from '@i18n';
+
+interface Props { lang?: Locale }
+const locale = resolveLocale(Astro.props.lang ?? Astro.currentLocale);
+const { suites, manifesto, splits, guestQuote, closing } = getContent(locale);
+const u = ui(locale);
+---
+
+<BaseLayout heroNav={true} lang={locale}>
+  <Hero lang={locale} />
+
+  <!-- ── Manifesto strip (Habitas "luxury for the soul" moment) ── -->
+  <section class="section bg-cream">
+    <div class="wrap-narrow text-center">
+      <p class="eyebrow will-reveal">{manifesto.eyebrow}</p>
+      <p
+        class="mt-8 font-display font-medium text-ink leading-snug balance will-reveal"
+        style="font-size: clamp(1.5rem, 3vw, 2.25rem);"
+      >
+        {manifesto.body}
+      </p>
+      <div class="rule mx-auto mt-10 will-reveal"></div>
+    </div>
+  </section>
+
+  <!-- ── The Casas — horizontal rail ───────────────────────── -->
+  <section class="section bg-cream-deep">
+    <div class="wrap">
+      <div class="text-center mb-14 md:mb-20">
+        <p class="eyebrow will-reveal">{u.home.casasEyebrow}</p>
+        <h2
+          class="mt-5 font-display font-medium text-ink balance will-reveal"
+          style="font-size: clamp(2rem, 4.5vw, 3.25rem);"
+        >
+          {u.home.casasTitle}
+        </h2>
+        <p class="mt-5 max-w-measure mx-auto font-body font-light text-mist will-reveal">
+          {u.home.casasIntro}
+        </p>
+      </div>
+
+      <div class="rail gap-6 md:gap-10 -mx-6 px-6 md:-mx-12 md:px-12 pb-4">
+        {suites.map((suite, i) => (
+          <div class="shrink-0 w-[78%] sm:w-[44%] lg:w-[30%]">
+            <SuiteCard suite={suite} index={i} lang={locale} />
+          </div>
+        ))}
+      </div>
+
+      <div class="text-center mt-12">
+        <a href={localizePath('/suites', locale)} class="btn-outline">{u.home.discoverAll}</a>
+        <p class="mt-6 will-reveal">
+          <a href={localizePath('/suites#whole-house', locale)} class="link-discover !text-[0.65rem]">{u.home.wholeHouse}</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Editorial splits ──────────────────────────────────── -->
+  {splits.map((split, i) => (
+    <section class="section bg-cream">
+      <div class="wrap grid gap-12 lg:gap-0 lg:grid-cols-12 items-center">
+        <div class:list={['lg:col-span-5 text-center', i % 2 === 1 ? 'lg:order-2 lg:col-start-8' : '']}>
+          <p class="eyebrow will-reveal">{split.eyebrow}</p>
+          <h2
+            class="mt-5 font-display font-medium text-ink balance will-reveal"
+            style="font-size: clamp(1.875rem, 3.5vw, 2.75rem);"
+          >
+            {split.title}
+          </h2>
+          <div class="rule mx-auto mt-7 will-reveal"></div>
+          <p class="mt-7 max-w-[26rem] mx-auto font-body font-light text-mist leading-relaxed pretty will-reveal">
+            {split.body}
+          </p>
+          <a href={localizePath(split.cta.href, locale)} class="link-discover mt-9 will-reveal">{split.cta.label}</a>
+        </div>
+        <div class:list={['lg:col-span-6', i % 2 === 1 ? 'lg:order-1 lg:col-start-1' : 'lg:col-start-7']}>
+          <div class="aspect-wide overflow-hidden bg-cream-deep will-reveal">
+            <img src={split.image.src} alt={split.image.alt} loading="lazy" class="w-full h-full object-cover" />
+          </div>
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <!-- ── Guest words ───────────────────────────────────────── -->
+  <section class="section bg-cream-deep">
+    <div class="wrap-narrow text-center">
+      <p class="eyebrow-quiet will-reveal">{u.home.guestWords}</p>
+      <blockquote
+        class="mt-8 font-display font-medium italic text-stone leading-snug balance will-reveal"
+        style="font-size: clamp(1.5rem, 3.2vw, 2.5rem);"
+      >
+        “{guestQuote.text}”
+      </blockquote>
+      <p class="mt-7 eyebrow-quiet will-reveal">{guestQuote.attribution}</p>
+    </div>
+  </section>
+
+  <!-- ── Closing CTA + booking ─────────────────────────────── -->
+  <section id="book" class="section bg-cream scroll-mt-24">
+    <div class="wrap-narrow text-center">
+      <p class="eyebrow will-reveal">{closing.eyebrow}</p>
+      <h2
+        class="mt-6 font-display font-medium text-ink balance will-reveal"
+        style="font-size: clamp(2.25rem, 5vw, 3.5rem);"
+      >
+        {closing.title}
+      </h2>
+      <p class="mt-6 max-w-measure mx-auto font-body font-light text-mist will-reveal">
+        {closing.body}
+      </p>
+      <div class="mt-12 will-reveal">
+        <LodgifySearchBar lang={locale} />
+      </div>
+      <p class="mt-8 will-reveal">
+        <a href={localizePath('/contact', locale)} class="link-discover">{u.home.inquiryLink}</a>
+      </p>
+    </div>
+  </section>
+</BaseLayout>

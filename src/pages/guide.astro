@@ -1,0 +1,30 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import GuideTeaser from '@components/GuideTeaser.astro';
+import { resolveLocale, type Locale } from '@i18n';
+
+const locale = resolveLocale((Astro.props as { lang?: Locale }).lang ?? Astro.currentLocale);
+const es = locale === 'es';
+const title = es ? 'Guía local' : 'Local Guide';
+const description = 'Our complete guide to Puerto Escondido — surf, eat, explore.';
+---
+
+<BaseLayout {title} {description} lang={locale}>
+  <section class="pt-32 md:pt-40">
+    <div class="wrap-narrow text-center">
+      <p class="text-coral-500 font-medium tracking-wide uppercase text-xs md:text-sm mb-4">
+        {es ? 'Guía local gratis' : 'Free Local Guide'}
+      </p>
+      <h1 class="font-display font-bold text-4xl md:text-5xl lg:text-6xl text-ink-500 tracking-tight balance leading-tight">
+        {es ? 'Puerto Escondido, por locales' : 'Puerto Escondido, by Locals'}
+      </h1>
+      <p class="mt-6 md:mt-8 font-body text-lg md:text-xl text-ink-400 leading-relaxed max-w-2xl mx-auto">
+        {es
+          ? 'Dónde surfear si vas empezando. Dónde surfear si ya sabes. Los cafés que valen la caminata. Los restaurantes a los que mandamos a todos. Hecha por gente que vive aquí.'
+          : "Where to surf if you're starting out. Where to surf if you know what you're doing. The cafés worth the walk. The restaurants we send everyone to. Put together by people who actually live here."}
+      </p>
+    </div>
+  </section>
+
+  <GuideTeaser variant="page" lang={locale} />
+</BaseLayout>

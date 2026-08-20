@@ -1,0 +1,110 @@
+---
+// ─────────────────────────────────────────────────────────────
+// GuideTeaser — lead-magnet PDF email gate.
+// Simple, warm, matches Punta Ox Ha brand.
+// ─────────────────────────────────────────────────────────────
+import { site } from '@lib/env';
+
+interface Props {
+  variant?: 'inline' | 'page';
+}
+
+const { variant = 'inline' } = Astro.props;
+---
+
+<section class="wrap section">
+  <div class="bg-sand-50 border border-sand-200 rounded-lg p-8 md:p-12 lg:p-16">
+    <div class="grid gap-10 md:grid-cols-12 items-center">
+      <div class="md:col-span-5">
+        <div class="aspect-[4/5] max-w-xs mx-auto md:mx-0 bg-coral-500 rounded-md shadow-lg overflow-hidden p-7 text-white flex flex-col justify-between">
+          <div>
+            <p class="text-xs uppercase tracking-widest opacity-80">Local Guide</p>
+            <p class="text-xs uppercase tracking-widest opacity-60 mt-1">Free PDF</p>
+          </div>
+          <div>
+            <h3 class="font-display font-bold text-3xl md:text-4xl leading-tight">
+              Puerto Escondido
+            </h3>
+            <p class="mt-2 text-base opacity-90">
+              The complete guide
+            </p>
+            <p class="mt-4 text-xs uppercase tracking-widest opacity-70">
+              Surf · Eat · Explore
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="md:col-span-7">
+        <p class="text-coral-500 font-medium tracking-wide uppercase text-xs md:text-sm mb-3">
+          Free Local Guide
+        </p>
+        <h2 class="font-display font-bold text-3xl md:text-4xl text-ink-500 tracking-tight balance leading-tight">
+          Get our complete Puerto Escondido guide
+        </h2>
+        <p class="mt-5 font-body text-lg text-ink-400 leading-relaxed pretty max-w-lg">
+          The best surf spots, restaurants we actually recommend, hidden beaches, and everything else you need to make the most of your stay. Drop your email and we'll send it.
+        </p>
+
+        <form
+          data-guide-form
+          method="post"
+          class="mt-8 flex flex-col sm:flex-row gap-3 max-w-md"
+          aria-label="Download local guide"
+        >
+          <input
+            type="email"
+            name="email"
+            required
+            placeholder="your@email.com"
+            class="form-input flex-1 bg-white border border-sand-300 rounded-md px-4 py-3 font-body text-base focus:border-coral-500 focus:ring-1 focus:ring-coral-500/30 transition-colors"
+            aria-label="Your email"
+          />
+          <button type="submit" class="btn-primary whitespace-nowrap">
+            Send the Guide
+          </button>
+        </form>
+        <p class="mt-3 text-xs text-ink-400/70">
+          No spam. One welcome email + your guide. Unsubscribe anytime.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { webhooks } from '@lib/env';
+
+  document.querySelectorAll<HTMLFormElement>('form[data-guide-form]').forEach((form) => {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!webhooks.leadMagnet) {
+        alert("The guide is almost ready — email us at puntaoxha@gmail.com and we'll send it personally.");
+        return;
+      }
+      const submitBtn = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending…';
+      }
+      const data = Object.fromEntries(new FormData(form).entries());
+      try {
+        await fetch(webhooks.leadMagnet, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ ...data, source: 'guide-download' }),
+        });
+        if (submitBtn) {
+          submitBtn.textContent = 'Sent — check your inbox';
+          submitBtn.style.background = 'var(--coral-deep)';
+        }
+      } catch {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Send the Guide';
+        }
+        alert("That didn't go through — try again, or just email us.");
+      }
+    });
+  });
+</script>

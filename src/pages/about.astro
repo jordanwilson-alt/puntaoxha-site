@@ -1,0 +1,38 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import FAQAccordion from '@components/FAQAccordion.astro';
+import { getContent, ui, resolveLocale, type Locale } from '@i18n';
+
+const locale = resolveLocale((Astro.props as { lang?: Locale }).lang ?? Astro.currentLocale);
+const { faq, aboutStory } = getContent(locale);
+const u = ui(locale);
+const title = u.pages.about.eyebrow;
+const description = `${u.pages.about.title}`;
+---
+
+<BaseLayout {title} {description} lang={locale}>
+  <section class="section pt-36 md:pt-44 bg-cream">
+    <div class="wrap-narrow text-center">
+      <p class="eyebrow will-reveal">{u.pages.about.eyebrow}</p>
+      <h1 class="mt-6 font-display font-medium text-ink balance leading-[1.08] will-reveal" style="font-size: clamp(2.5rem, 5.5vw, 4rem);">
+        {u.pages.about.title}
+      </h1>
+      <div class="rule mx-auto mt-9 will-reveal"></div>
+    </div>
+  </section>
+
+  <section class="section-tight bg-cream">
+    <div class="wrap-narrow space-y-8">
+      {aboutStory.map((para) => (
+        <p class="font-body font-light text-mist text-lg leading-relaxed pretty will-reveal">{para}</p>
+      ))}
+    </div>
+  </section>
+
+  <section class="section bg-cream-deep">
+    <div class="wrap-narrow">
+      <p class="eyebrow text-center mb-12 will-reveal">{u.pages.about.faqEyebrow}</p>
+      <FAQAccordion items={faq} />
+    </div>
+  </section>
+</BaseLayout>

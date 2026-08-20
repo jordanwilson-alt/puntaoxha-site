@@ -1,0 +1,50 @@
+---
+// ─────────────────────────────────────────────────────────────
+// LanguageSwitcher — EN / ES toggle. Links to the same page in the
+// other locale (EN at /, ES at /es/…) and records the explicit
+// choice in localStorage so auto-detect respects it afterward.
+// ─────────────────────────────────────────────────────────────
+import { localizePath, type Locale } from '@i18n';
+
+interface Props {
+  lang: Locale;
+  class?: string;
+}
+const { lang, class: cls } = Astro.props;
+const path = Astro.url.pathname;
+const enHref = localizePath(path, 'en');
+const esHref = localizePath(path, 'es');
+---
+
+<div class:list={['inline-flex items-center gap-1.5 text-[0.6875rem] uppercase tracking-[0.14em]', cls]} data-lang-switch>
+  <a
+    href={enHref}
+    data-set-lang="en"
+    data-nav-link
+    aria-current={lang === 'en' ? 'true' : undefined}
+    class:list={['transition-colors', lang === 'en' ? '!text-coral' : 'opacity-55 hover:opacity-100']}
+  >EN</a>
+  <span aria-hidden="true" class="opacity-30">/</span>
+  <a
+    href={esHref}
+    data-set-lang="es"
+    data-nav-link
+    aria-current={lang === 'es' ? 'true' : undefined}
+    class:list={['transition-colors', lang === 'es' ? '!text-coral' : 'opacity-55 hover:opacity-100']}
+  >ES</a>
+</div>
+
+<script>
+  const bindLang = () => {
+    document.querySelectorAll<HTMLAnchorElement>('[data-set-lang]').forEach((el) => {
+      if (el.dataset.bound) return;
+      el.dataset.bound = 'true';
+      el.addEventListener('click', () => {
+        try { localStorage.setItem('poh_lang', el.dataset.setLang || 'en'); } catch (e) {}
+      });
+    });
+  };
+  bindLang();
+  document.addEventListener('astro:page-load', bindLang);
+  document.addEventListener('astro:after-swap', bindLang);
+</script>

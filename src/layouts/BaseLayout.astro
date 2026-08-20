@@ -1,0 +1,124 @@
+---
+// ─────────────────────────────────────────────────────────────
+// BaseLayout — head, View Transitions, Nav, Footer, motion init.
+// `heroNav` — pass true on pages with a full-bleed hero so the
+// nav floats transparent with cream text at top.
+// ─────────────────────────────────────────────────────────────
+import { ViewTransitions } from 'astro:transitions';
+import { site, features } from '@lib/env';
+import Nav from '@components/Nav.astro';
+import Footer from '@components/Footer.astro';
+import ChatLauncher from '@components/ChatLauncher.astro';
+import WhatsAppButton from '@components/WhatsAppButton.astro';
+import { resolveLocale, localizePath, type Locale } from '@i18n';
+import '@styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  heroNav?: boolean;
+  lang?: Locale;
+}
+
+const {
+  title,
+  description = `${site.nameFull} — six boutique casas around a courtyard oasis in La Punta, steps from the surf, cafés, and the easy life of Puerto Escondido.`,
+  ogImage = '/hero/og.jpg',
+  heroNav = false,
+  lang,
+} = Astro.props;
+
+const locale = resolveLocale(lang ?? Astro.currentLocale);
+const ORIGIN = Astro.site ?? 'https://puntaoxha.com';
+const fullTitle = title ? `${title} · ${site.name}` : `${site.nameFull} · ${site.tagline}`;
+const canonicalURL = new URL(Astro.url.pathname, ORIGIN);
+const enURL = new URL(localizePath(Astro.url.pathname, 'en'), ORIGIN);
+const esURL = new URL(localizePath(Astro.url.pathname, 'es'), ORIGIN);
+---
+
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Language auto-detect: first-time visitors are sent to their
+         browser language; an explicit switcher choice (poh_lang) wins.
+         Runs before paint to avoid a flash of the wrong language. -->
+    <script is:inline>
+      (function () {
+        try {
+          var p = location.pathname;
+          var onEs = /^\/es(\/|$)/.test(p);
+          var pref = localStorage.getItem('poh_lang');
+          var want = pref;
+          if (!want) {
+            var ls = navigator.languages || [navigator.language || 'en'];
+            want = ls.some(function (l) { return /^es/i.test(l); }) ? 'es' : 'en';
+          }
+          if (want === 'es' && !onEs) {
+            location.replace('/es' + (p === '/' ? '' : p) + location.search + location.hash);
+          } else if (want === 'en' && onEs) {
+            location.replace((p.replace(/^\/es/, '') || '/') + location.search + location.hash);
+          }
+        } catch (e) {}
+      })();
+    </script>
+    <script is:inline>document.documentElement.classList.add('reveal-on');</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="canonical" href={canonicalURL} />
+    <link rel="alternate" hreflang="en" href={enURL} />
+    <link rel="alternate" hreflang="es" href={esURL} />
+    <link rel="alternate" hreflang="x-default" href={enURL} />
+
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#FBF6EF" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(ogImage, ORIGIN)} />
+    <meta property="og:locale" content={locale === 'es' ? 'es_MX' : 'en_US'} />
+
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:title" content={fullTitle} />
+    <meta property="twitter:description" content={description} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <ViewTransitions fallback="swap" />
+  </head>
+
+  <body class="antialiased">
+    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 btn-solid">
+      Skip to content
+    </a>
+
+    <Nav overHero={heroNav} lang={locale} />
+
+    <main id="main" tabindex="-1">
+      <slot />
+    </main>
+
+    <Footer lang={locale} />
+
+    {features.chatEnabled && <ChatLauncher />}
+    <WhatsAppButton lang={locale} raised={features.chatEnabled} />
+
+    <script>
+      import '@lib/motion.client';
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  @keyframes fade-in { from { opacity: 0; } }
+  @keyframes fade-out { to { opacity: 0; } }
+  ::view-transition-old(root) { animation: 320ms var(--ease-soft, ease) both fade-out; }
+  ::view-transition-new(root) { animation: 320ms var(--ease-out, ease) both fade-in; }
+</style>

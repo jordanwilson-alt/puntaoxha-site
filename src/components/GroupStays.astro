@@ -1,0 +1,31 @@
+---
+// ─────────────────────────────────────────────────────────────
+// GroupStays — the whole-house / groups pitch band. Centered
+// manifesto register; CTA prefills the inquiry form with the
+// whole-property option. No price published (inquiry-only).
+// ─────────────────────────────────────────────────────────────
+import { getContent, localizePath, resolveLocale, type Locale } from '@i18n';
+
+interface Props {
+  lang?: Locale;
+}
+
+const locale = resolveLocale(Astro.props.lang ?? Astro.currentLocale);
+const { wholeHouse } = getContent(locale);
+---
+
+<section id="whole-house" class="section bg-cream scroll-mt-24">
+  <div class="wrap-narrow text-center">
+    <p class="eyebrow will-reveal">{wholeHouse.eyebrow}</p>
+    <h2 class="mt-6 font-display font-medium text-ink balance will-reveal" style="font-size: clamp(2rem, 4.5vw, 3.25rem);">
+      {wholeHouse.title}
+    </h2>
+    <div class="rule mx-auto mt-8 will-reveal"></div>
+    <p class="mt-8 max-w-measure mx-auto font-body font-light text-mist leading-relaxed pretty will-reveal">
+      {wholeHouse.body}
+    </p>
+    <a href={localizePath('/contact?suite=whole-property#inquire', locale)} class="btn-outline mt-10 will-reveal">
+      {wholeHouse.cta}
+    </a>
+  </div>
+</section>
