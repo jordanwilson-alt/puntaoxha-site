@@ -1,0 +1,51 @@
+{
+  "bearings": {
+    "eyebrow": "Getting your bearings",
+    "title": "Close to everything that matters.",
+    "note": "We share the exact address with your booking confirmation.",
+    "items": [
+      {
+        "place": "La Punta point break",
+        "distance": "2 min walk"
+      },
+      {
+        "place": "Cafés & kitchens of La Punta",
+        "distance": "Steps from the door"
+      },
+      {
+        "place": "Zicatela beach",
+        "distance": "10 min up the sand"
+      },
+      {
+        "place": "Carrizalillo cove",
+        "distance": "15 min by taxi"
+      },
+      {
+        "place": "Puerto Escondido airport (PXM)",
+        "distance": "~15 min drive"
+      }
+    ]
+  },
+  "areaSections": [
+    {
+      "eyebrow": "Surf",
+      "title": "La Punta, Zicatela, Carrizalillo",
+      "body": "La Punta is the easygoing left at the end of our street — the place to learn or shake off rust. Zicatela is the famous heavy wave, for watching from the sand or paddling out if you know what you are doing. Carrizalillo is the pocket bay for swimming and snorkeling."
+    },
+    {
+      "eyebrow": "Eat & drink",
+      "title": "The village kitchens of La Punta",
+      "body": "Five minutes on foot gets you breakfast cafés, taquerías, mezcal bars, and slow dinners under string lights. Ask us for the current list — we keep it updated and opinionated."
+    },
+    {
+      "eyebrow": "Explore",
+      "title": "Bioluminescent lagoons, hot springs, turtles",
+      "body": "Manialtepec lagoon glows on dark nights. Atotonilco has hot springs in the hills. Mazunte and the turtle sanctuary are an hour down the coast. We can arrange trusted drivers and guides for all of it."
+    },
+    {
+      "eyebrow": "Move",
+      "title": "Scooters, boards, and barefoot distances",
+      "body": "Most of life here happens within a ten-minute walk. For everything else, we will point you to the scooter rental we trust and the board shop with the good quiver."
+    }
+  ]
+}

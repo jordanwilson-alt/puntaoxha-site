@@ -1,0 +1,36 @@
+{
+  "items": [
+    {
+      "slug": "moto",
+      "name": "Moto rental",
+      "essence": "Two wheels to explore the coast at your own pace.",
+      "detail": "Skip the taxis — cruise to the surf, the market, and the sunset spots up the coast. Reserve one with your stay.",
+      "priceLine": null,
+      "qty": 2,
+      "images": [
+        {
+          "src": "/extras/moto.jpg",
+          "alt": "A rental moto parked in the courtyard"
+        },
+        {
+          "src": "/extras/moto-2.jpg",
+          "alt": "The second rental moto in the courtyard"
+        }
+      ]
+    },
+    {
+      "slug": "surfboard",
+      "name": "Surfboard rental",
+      "essence": "Grab a board and walk straight to the point break.",
+      "detail": "La Punta’s gentle left is two minutes away. Keep a board for the length of your stay.",
+      "priceLine": null,
+      "qty": 2,
+      "images": [
+        {
+          "src": "/extras/surfboard.jpg",
+          "alt": "Two surfboards leaning against the wall, ready to borrow"
+        }
+      ]
+    }
+  ]
+}

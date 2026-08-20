@@ -1,0 +1,266 @@
+# ─────────────────────────────────────────────────────────────
+# Punta Ox Ha' — Site Editor configuration (Sveltia CMS)
+# Every editable text and photo on puntaoxha.com is defined here.
+# Saving in the editor commits to GitHub → Netlify rebuilds →
+# live in ~2 minutes.
+# NOTE FOR SETUP: set `repo:` below to the real GitHub repo once
+# it exists (see HANDOVER.md).
+# ─────────────────────────────────────────────────────────────
+
+backend:
+  name: github
+  repo: puntaoxha/puntaoxha-site   # ← UPDATE after the GitHub repo is created
+  branch: main
+
+site_url: https://puntaoxha.com
+display_url: https://puntaoxha.com
+logo_url: https://puntaoxha.com/brand/mark.png
+
+media_folder: public/uploads
+public_folder: /uploads
+
+collections:
+  # ── The Casas ──────────────────────────────────────────────
+  - name: casas
+    label: The Casas
+    description: 'Each casa''s name, copy, details, and photos. Edit English and Spanish — they should always say the same thing. TIP: photos look best landscape, about 1200px wide.'
+    files:
+      - name: casas_en
+        label: Casas — English
+        file: src/content/data/en/suites.json
+        fields: &casa_fields
+          - label: Casas
+            name: items
+            widget: list
+            allow_add: false
+            collapsed: true
+            summary: '{{fields.name}}'
+            fields:
+              - { label: 'Slug (do not change — links depend on it)', name: slug, widget: string }
+              - { label: Name, name: name, widget: string }
+              - { label: 'One-line essence (shown on the card)', name: essence, widget: string }
+              - { label: 'Story (the paragraph on the casa''s page)', name: story, widget: text }
+              - { label: 'Type (e.g. Studio / One-bedroom / Two-bedroom)', name: type, widget: string }
+              - { label: Floor, name: floor, widget: string }
+              - { label: 'Sleeps (e.g. "2 guests")', name: sleeps, widget: string }
+              - { label: 'Best for… (small line on the card)', name: bestFor, widget: string }
+              - label: Amenities
+                name: amenities
+                widget: list
+                field: { label: Amenity, name: amenity, widget: string }
+              - label: 'Cover photo (portrait works best)'
+                name: hero
+                widget: object
+                fields:
+                  - { label: Image, name: src, widget: image }
+                  - { label: 'Alt text (describe the photo)', name: alt, widget: string }
+              - label: 'Gallery photos'
+                name: gallery
+                widget: list
+                collapsed: true
+                summary: '{{fields.caption}}'
+                fields:
+                  - { label: Image, name: src, widget: image }
+                  - { label: 'Alt text (describe the photo)', name: alt, widget: string }
+                  - { label: 'Caption (short label, e.g. "Bedroom — king")', name: caption, widget: string, required: false }
+              - { label: 'Hide photos ("coming soon" panel)', name: comingSoon, widget: boolean, required: false, default: false }
+      - name: casas_es
+        label: Casas — Español
+        file: src/content/data/es/suites.json
+        fields: *casa_fields
+
+  # ── Homepage ───────────────────────────────────────────────
+  - name: homepage
+    label: Homepage
+    description: 'The welcome text, the three photo sections, the guest quote, and the whole-house pitch.'
+    files:
+      - name: home_en
+        label: Homepage — English
+        file: src/content/data/en/home.json
+        fields: &home_fields
+          - label: 'Welcome block'
+            name: manifesto
+            widget: object
+            fields:
+              - { label: 'Small label', name: eyebrow, widget: string }
+              - { label: Text, name: body, widget: text }
+          - label: 'Photo sections (three)'
+            name: splits
+            widget: list
+            allow_add: false
+            collapsed: true
+            summary: '{{fields.title}}'
+            fields:
+              - { label: 'Small label', name: eyebrow, widget: string }
+              - { label: Title, name: title, widget: string }
+              - { label: Text, name: body, widget: text }
+              - label: Button
+                name: cta
+                widget: object
+                fields:
+                  - { label: 'Button label', name: label, widget: string }
+                  - { label: 'Link (do not change without checking)', name: href, widget: string }
+              - label: Photo
+                name: image
+                widget: object
+                fields:
+                  - { label: Image, name: src, widget: image }
+                  - { label: 'Alt text', name: alt, widget: string }
+          - label: 'Guest quote'
+            name: guestQuote
+            widget: object
+            fields:
+              - { label: Quote, name: text, widget: text }
+              - { label: 'Who said it (e.g. "Sarah, Canada — via Airbnb")', name: attribution, widget: string }
+          - label: 'Booking section'
+            name: closing
+            widget: object
+            fields:
+              - { label: 'Small label', name: eyebrow, widget: string }
+              - { label: Title, name: title, widget: string }
+              - { label: Text, name: body, widget: text }
+          - label: 'Whole-house pitch'
+            name: wholeHouse
+            widget: object
+            fields:
+              - { label: 'Small label', name: eyebrow, widget: string }
+              - { label: Title, name: title, widget: string }
+              - { label: Text, name: body, widget: text }
+              - { label: 'Button label', name: cta, widget: string }
+      - name: home_es
+        label: Homepage — Español
+        file: src/content/data/es/home.json
+        fields: *home_fields
+
+  # ── FAQ ────────────────────────────────────────────────────
+  - name: faq
+    label: FAQ
+    description: 'Questions and answers on the About page. Keep English and Spanish in the same order.'
+    files:
+      - name: faq_en
+        label: FAQ — English
+        file: src/content/data/en/faq.json
+        fields: &faq_fields
+          - label: Questions
+            name: items
+            widget: list
+            collapsed: true
+            summary: '{{fields.q}}'
+            fields:
+              - { label: Question, name: q, widget: string }
+              - { label: Answer, name: a, widget: text }
+      - name: faq_es
+        label: FAQ — Español
+        file: src/content/data/es/faq.json
+        fields: *faq_fields
+
+  # ── Extras (motos & boards) ────────────────────────────────
+  - name: extras
+    label: Extras (Motos & Boards)
+    description: 'The rental cards on the Extras page.'
+    files:
+      - name: extras_en
+        label: Extras — English
+        file: src/content/data/en/extras.json
+        fields: &extras_fields
+          - label: Rentals
+            name: items
+            widget: list
+            collapsed: true
+            summary: '{{fields.name}}'
+            fields:
+              - { label: 'Slug (do not change)', name: slug, widget: string }
+              - { label: Name, name: name, widget: string }
+              - { label: 'One-line description', name: essence, widget: string }
+              - { label: 'Details', name: detail, widget: text }
+              - { label: 'Price line (leave empty for inquiry-only)', name: priceLine, widget: string, required: false }
+              - { label: 'How many available', name: qty, widget: number, value_type: int }
+              - label: Photos
+                name: images
+                widget: list
+                fields:
+                  - { label: Image, name: src, widget: image }
+                  - { label: 'Alt text', name: alt, widget: string }
+      - name: extras_es
+        label: Extras — Español
+        file: src/content/data/es/extras.json
+        fields: *extras_fields
+
+  # ── Tours ──────────────────────────────────────────────────
+  - name: tours
+    label: Tours
+    description: 'The tours list on the Extras page.'
+    files:
+      - name: tours_en
+        label: Tours — English
+        file: src/content/data/en/tours.json
+        fields: &tours_fields
+          - label: Tours
+            name: items
+            widget: list
+            collapsed: true
+            summary: '{{fields.name}}'
+            fields:
+              - { label: 'Tour name', name: name, widget: string }
+              - { label: 'One-line description', name: line, widget: string }
+          - { label: '"Also on the menu…" text', name: more, widget: text }
+      - name: tours_es
+        label: Tours — Español
+        file: src/content/data/es/tours.json
+        fields: *tours_fields
+
+  # ── The Area page ──────────────────────────────────────────
+  - name: area
+    label: The Area
+    description: 'The distances list and the four neighborhood sections.'
+    files:
+      - name: area_en
+        label: The Area — English
+        file: src/content/data/en/area.json
+        fields: &area_fields
+          - label: 'Getting your bearings'
+            name: bearings
+            widget: object
+            fields:
+              - { label: 'Small label', name: eyebrow, widget: string }
+              - { label: Title, name: title, widget: string }
+              - { label: 'Privacy note', name: note, widget: string }
+              - label: Distances
+                name: items
+                widget: list
+                summary: '{{fields.place}}'
+                fields:
+                  - { label: Place, name: place, widget: string }
+                  - { label: 'Distance (e.g. "2 min walk")', name: distance, widget: string }
+          - label: 'Neighborhood sections'
+            name: areaSections
+            widget: list
+            allow_add: false
+            collapsed: true
+            summary: '{{fields.title}}'
+            fields:
+              - { label: 'Small label', name: eyebrow, widget: string }
+              - { label: Title, name: title, widget: string }
+              - { label: Text, name: body, widget: text }
+      - name: area_es
+        label: The Area — Español
+        file: src/content/data/es/area.json
+        fields: *area_fields
+
+  # ── About page ─────────────────────────────────────────────
+  - name: about
+    label: About
+    description: 'The three story paragraphs on the About page.'
+    files:
+      - name: about_en
+        label: About — English
+        file: src/content/data/en/about.json
+        fields: &about_fields
+          - label: 'Story paragraphs'
+            name: story
+            widget: list
+            field: { label: Paragraph, name: paragraph, widget: text }
+      - name: about_es
+        label: About — Español
+        file: src/content/data/es/about.json
+        fields: *about_fields

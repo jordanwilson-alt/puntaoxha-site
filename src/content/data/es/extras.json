@@ -1,0 +1,36 @@
+{
+  "items": [
+    {
+      "slug": "moto",
+      "name": "Renta de moto",
+      "essence": "Dos ruedas para explorar la costa a tu ritmo.",
+      "detail": "Olvídate de los taxis — muévete al surf, al mercado y a los atardeceres costa arriba. Reserva una con tu estancia.",
+      "priceLine": null,
+      "qty": 2,
+      "images": [
+        {
+          "src": "/extras/moto.jpg",
+          "alt": "Una moto de renta estacionada en el patio"
+        },
+        {
+          "src": "/extras/moto-2.jpg",
+          "alt": "La segunda moto de renta en el patio"
+        }
+      ]
+    },
+    {
+      "slug": "surfboard",
+      "name": "Renta de tabla",
+      "essence": "Toma una tabla y camina directo al point break.",
+      "detail": "La izquierda suave de La Punta está a dos minutos. Quédate con una tabla durante toda tu estancia.",
+      "priceLine": null,
+      "qty": 2,
+      "images": [
+        {
+          "src": "/extras/surfboard.jpg",
+          "alt": "Dos tablas de surf recargadas en la pared, listas para usar"
+        }
+      ]
+    }
+  ]
+}

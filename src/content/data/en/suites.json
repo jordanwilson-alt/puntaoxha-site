@@ -1,0 +1,332 @@
+{
+  "items": [
+    {
+      "slug": "casa-keiki",
+      "name": "Casa Keiki",
+      "essence": "Step from your door into the courtyard, and from the courtyard into the pool.",
+      "story": "Casa Keiki sits on the garden level, where the courtyard is your front yard and the pool is a few barefoot steps away. Mornings here start slow — coffee outside, a swim before the day warms up, the surf two minutes down the street when you are ready for it.",
+      "type": "Studio",
+      "floor": "Ground floor",
+      "sleeps": "2 guests",
+      "bestFor": "Best for couples who want the pool a step from bed.",
+      "amenities": [
+        "Direct pool & courtyard access",
+        "Air conditioning",
+        "Fibre + Starlink Wi-Fi",
+        "Kitchenette"
+      ],
+      "hero": {
+        "src": "/suites/casa-keiki/hero.jpg",
+        "alt": "Casa Keiki — garden-level casa opening to the courtyard"
+      },
+      "gallery": [
+        {
+          "src": "/suites/casa-keiki/01.jpg",
+          "alt": "Casa Keiki living corner — rattan chair and potted plants beside the garden-level doorway",
+          "caption": "Living corner"
+        },
+        {
+          "src": "/suites/casa-keiki/02.jpg",
+          "alt": "Casa Keiki studio — bed and kitchenette in one open, light-filled room",
+          "caption": "The studio"
+        },
+        {
+          "src": "/suites/casa-keiki/03.jpg",
+          "alt": "Casa Keiki bedroom — patterned bedspread against a warm accent wall with framed art",
+          "caption": "Bedroom"
+        },
+        {
+          "src": "/suites/casa-keiki/04.jpg",
+          "alt": "Casa Keiki kitchenette — gas range and coffee maker beside a sunny window",
+          "caption": "Kitchenette"
+        },
+        {
+          "src": "/suites/casa-keiki/05.jpg",
+          "alt": "Casa Keiki — dining table beside the open door to the courtyard",
+          "caption": "Dining — courtyard door"
+        },
+        {
+          "src": "/suites/casa-keiki/06.jpg",
+          "alt": "Casa Keiki bathroom — pedestal sink, toilet, and glass-enclosed shower",
+          "caption": "Bathroom"
+        }
+      ]
+    },
+    {
+      "slug": "casa-mia",
+      "name": "Casa Mia",
+      "essence": "Two bedrooms, a full kitchen, and a poolside patio — our home for families and friends.",
+      "story": "Casa Mia is the biggest home in the house: two bedrooms, a living room, a full kitchen for long breakfasts, and a patio that opens straight onto the courtyard and pool. Built for families, friends traveling together, and anyone who wants room to spread out without leaving the oasis.",
+      "type": "Two-bedroom",
+      "floor": "Ground floor",
+      "sleeps": "4 guests",
+      "bestFor": "Best for families & friends — full kitchen, living room, poolside patio.",
+      "amenities": [
+        "Full kitchen",
+        "Living room",
+        "Poolside patio",
+        "Air conditioning",
+        "Ceiling fans",
+        "Fibre + Starlink Wi-Fi"
+      ],
+      "hero": {
+        "src": "/suites/casa-mia/hero.jpg",
+        "alt": "Casa Mia — two-bedroom home with poolside patio"
+      },
+      "gallery": [
+        {
+          "src": "/suites/casa-mia/01.jpg",
+          "alt": "Casa Mia great room — open living and kitchen bar with seating on warm wood floors",
+          "caption": "Great room"
+        },
+        {
+          "src": "/suites/casa-mia/02.jpg",
+          "alt": "Casa Mia living area — sofa and armchair opening through glass doors to the courtyard",
+          "caption": "Living room"
+        },
+        {
+          "src": "/suites/casa-mia/03.jpg",
+          "alt": "Casa Mia — cushioned daybed by the window with a view onto the pool",
+          "caption": "Daybed — pool view"
+        },
+        {
+          "src": "/suites/casa-mia/04.jpg",
+          "alt": "Casa Mia bedroom — bed beside a bright window",
+          "caption": "Bedroom"
+        },
+        {
+          "src": "/suites/casa-mia/05.jpg",
+          "alt": "Casa Mia dining area — round table with a wood hutch and sunburst mirror",
+          "caption": "Dining"
+        },
+        {
+          "src": "/suites/casa-mia/06.jpg",
+          "alt": "Casa Mia lounge — patterned sofa with pillows beneath a macramé wall hanging",
+          "caption": "Lounge"
+        },
+        {
+          "src": "/suites/casa-mia/07.jpg",
+          "alt": "Casa Mia bathroom — vanity with a sconce and towel hooks",
+          "caption": "Bathroom"
+        }
+      ]
+    },
+    {
+      "slug": "casa-peach",
+      "name": "Casa Peach",
+      "essence": "A top-floor one-bedroom with its own covered terrace lounge.",
+      "story": "Casa Peach is a full one-bedroom home on the top floor — open living and dining, a kitchen of your own, and a king bedroom with a desk for the work-and-surf crowd. The covered terrace is the heart of it: a hammock, a daybed piled with sugar-skull pillows, and the green of La Punta beyond. Slow mornings, long evenings.",
+      "type": "One-bedroom",
+      "floor": "Top floor",
+      "sleeps": "2 guests",
+      "bestFor": "Best for work-and-surf stays — desk, kitchen, covered terrace.",
+      "amenities": [
+        "Private covered terrace",
+        "Full kitchen",
+        "Living & dining area",
+        "Work desk",
+        "Air conditioning",
+        "Fibre + Starlink Wi-Fi"
+      ],
+      "hero": {
+        "src": "/suites/casa-peach/hero.jpg",
+        "alt": "Casa Peach — covered terrace with a hammock and a daybed with sugar-skull pillows"
+      },
+      "gallery": [
+        {
+          "src": "/suites/casa-peach/01.jpg",
+          "alt": "Casa Peach living area — daybed sofa beside curtained glass doors to the terrace",
+          "caption": "Living room"
+        },
+        {
+          "src": "/suites/casa-peach/02.jpg",
+          "alt": "Casa Peach bedroom — king bed against a burnt-orange accent wall with framed prints",
+          "caption": "Bedroom — king"
+        },
+        {
+          "src": "/suites/casa-peach/03.jpg",
+          "alt": "Casa Peach bedroom — dark wood armoire and a writing desk beneath a portrait",
+          "caption": "Bedroom — work desk"
+        },
+        {
+          "src": "/suites/casa-peach/04.jpg",
+          "alt": "Casa Peach kitchen — gas range, coffee maker, and full-size fridge",
+          "caption": "Kitchen"
+        },
+        {
+          "src": "/suites/casa-peach/05.jpg",
+          "alt": "Casa Peach lounge corner — patterned daybed with pillows beside the dining chairs and a reading lamp",
+          "caption": "Lounge corner"
+        },
+        {
+          "src": "/suites/casa-peach/06.jpg",
+          "alt": "Casa Peach bathroom — glass shower, amber tile, and stocked towel rack",
+          "caption": "Bathroom"
+        }
+      ]
+    },
+    {
+      "slug": "casa-yada",
+      "name": "Casa Yada",
+      "essence": "A king bed, a private patio, and the courtyard a flight of stairs away.",
+      "story": "Casa Yada is the easy middle of the house — second floor, king bed, a private patio for two. Close enough to the courtyard to feel the life of the place, far enough to disappear when you want to. The casa our returning guests ask for by name.",
+      "type": "One-bedroom",
+      "floor": "Second floor",
+      "sleeps": "2 guests · King bed",
+      "bestFor": "Best for couples — king bed and a private patio.",
+      "amenities": [
+        "King bed",
+        "Private patio",
+        "Air conditioning",
+        "Fibre + Starlink Wi-Fi"
+      ],
+      "hero": {
+        "src": "/suites/casa-yada/hero.jpg",
+        "alt": "Casa Yada — king bed and private patio"
+      },
+      "gallery": [
+        {
+          "src": "/suites/casa-yada/01.jpg",
+          "alt": "Casa Yada coffee bar",
+          "caption": "Coffee bar"
+        },
+        {
+          "src": "/suites/casa-yada/02.jpg",
+          "alt": "Casa Yada living room",
+          "caption": "Living room"
+        },
+        {
+          "src": "/suites/casa-yada/05.jpg",
+          "alt": "Casa Yada bedroom",
+          "caption": "Bedroom — king"
+        },
+        {
+          "src": "/suites/casa-yada/06.jpg",
+          "alt": "Casa Yada balcony",
+          "caption": "Balcony"
+        },
+        {
+          "src": "/suites/casa-yada/03.jpg",
+          "alt": "Casa Yada bathroom",
+          "caption": "Bathroom"
+        },
+        {
+          "src": "/suites/casa-yada/04.jpg",
+          "alt": "Casa Yada shower",
+          "caption": "Shower"
+        }
+      ]
+    },
+    {
+      "slug": "casa-linda",
+      "name": "Casa Linda",
+      "essence": "Our spacious second-floor home for families and small groups.",
+      "story": "Casa Linda takes the second floor with space to spare — two bedrooms and room for a small crew. Groups of friends, families with kids who fall asleep mid-sentence after a day in the water: this is your home. The courtyard and pool are one flight down.",
+      "type": "Two-bedroom",
+      "floor": "Second floor",
+      "sleeps": "4 guests",
+      "bestFor": "Best for families & small groups — two bedrooms, one floor up.",
+      "amenities": [
+        "Two bedrooms",
+        "Air conditioning",
+        "Ceiling fans",
+        "Fibre + Starlink Wi-Fi"
+      ],
+      "hero": {
+        "src": "/suites/casa-linda/hero.jpg",
+        "alt": "Casa Linda — second-floor living room with an L-shaped daybed, macramé, and warm light"
+      },
+      "gallery": [
+        {
+          "src": "/suites/casa-linda/01.jpg",
+          "alt": "Casa Linda balcony nook — a leafy plant and seat by the sunlit window",
+          "caption": "Balcony nook"
+        },
+        {
+          "src": "/suites/casa-linda/02.jpg",
+          "alt": "Casa Linda bedroom — bed with a framed portrait and open shelving",
+          "caption": "Bedroom one"
+        },
+        {
+          "src": "/suites/casa-linda/03.jpg",
+          "alt": "Casa Linda bedroom — bed beside a louvered wardrobe and built-in shelves",
+          "caption": "Bedroom one"
+        },
+        {
+          "src": "/suites/casa-linda/04.jpg",
+          "alt": "Casa Linda second bedroom — bed beneath a bold floral painting",
+          "caption": "Bedroom two"
+        },
+        {
+          "src": "/suites/casa-linda/05.jpg",
+          "alt": "Casa Linda second bedroom — bed with the floral painting and open shelving",
+          "caption": "Bedroom two"
+        },
+        {
+          "src": "/suites/casa-linda/06.jpg",
+          "alt": "Casa Linda kitchen — full kitchen and dining table with woven chairs",
+          "caption": "Kitchen & dining"
+        },
+        {
+          "src": "/suites/casa-linda/07.jpg",
+          "alt": "Casa Linda kitchen — gas range, coffee maker, and prep counter",
+          "caption": "Kitchen"
+        },
+        {
+          "src": "/suites/casa-linda/08.jpg",
+          "alt": "Casa Linda bathroom — walk-in shower",
+          "caption": "Bathroom — walk-in shower"
+        }
+      ]
+    },
+    {
+      "slug": "casa-bel",
+      "name": "Casa Bel",
+      "essence": "The top-floor home — full kitchen, living room, and a big private terrace.",
+      "story": "Casa Bel is the top-floor home: a full casa with its own kitchen, a living room, and a wide private terrace strung with a hammock. Cook a long breakfast, work in the afternoon shade, watch the light go soft over La Punta. Room to properly settle in, with the surf two minutes down the street.",
+      "type": "One-bedroom",
+      "floor": "Top floor",
+      "sleeps": "2 guests",
+      "bestFor": "Best for longer stays — full kitchen and a big private terrace.",
+      "amenities": [
+        "Private terrace",
+        "Full kitchen",
+        "Living room",
+        "Air conditioning",
+        "Ceiling fans",
+        "Fibre + Starlink Wi-Fi"
+      ],
+      "hero": {
+        "src": "/suites/casa-bel/hero.jpg",
+        "alt": "Casa Bel — top-floor terrace with a hammock, live-edge wood table, and open-air afternoon light"
+      },
+      "gallery": [
+        {
+          "src": "/suites/casa-bel/01.jpg",
+          "alt": "Casa Bel living area — armchair and full-size fridge beside sliding doors that open to the private terrace",
+          "caption": "Living room"
+        },
+        {
+          "src": "/suites/casa-bel/02.jpg",
+          "alt": "Casa Bel kitchen — full kitchen with a gas range, fridge, and wood dining table",
+          "caption": "Kitchen"
+        },
+        {
+          "src": "/suites/casa-bel/03.jpg",
+          "alt": "Casa Bel dining table — solid wood table with woven chairs beneath a folk-art print",
+          "caption": "Dining"
+        },
+        {
+          "src": "/suites/casa-bel/04.jpg",
+          "alt": "Casa Bel bedroom — made bed beneath a folk-art print, with a woven wall sconce and bedside lamp",
+          "caption": "Bedroom"
+        },
+        {
+          "src": "/suites/casa-bel/05.jpg",
+          "alt": "Casa Bel bedroom — flat-screen TV on a carved wood dresser, the door open to the en-suite bathroom, beside a sunlit window",
+          "caption": "Bedroom — en-suite"
+        }
+      ]
+    }
+  ]
+}

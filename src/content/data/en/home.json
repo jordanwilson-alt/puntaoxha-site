@@ -1,0 +1,62 @@
+{
+  "manifesto": {
+    "eyebrow": "Welcome to our home",
+    "body": "Punta Ox Ha' is six casas around a courtyard oasis in La Punta — steps from the surf, the cafés, and the easy life of Puerto Escondido. We built it for surfers chasing the perfect wave, remote workers looking for inspiration, and anyone simply seeking to relax and recharge. Stay a few nights and the place starts to feel like yours; stay a week and the neighborhood does too."
+  },
+  "splits": [
+    {
+      "eyebrow": "The courtyard",
+      "title": "A pool in the middle of everything.",
+      "body": "The courtyard is the heart of the house — a pool to cool off in, shade to read in, and the kind of common space where strangers end up sharing dinner plans. Peaceful when you want quiet, social when you want company.",
+      "cta": {
+        "label": "Discover the casas",
+        "href": "/suites"
+      },
+      "image": {
+        "src": "/hero/courtyard.jpg",
+        "alt": "Looking straight down on the courtyard pool — turquoise water, a float, sun umbrellas, and greenery all around"
+      }
+    },
+    {
+      "eyebrow": "La Punta",
+      "title": "The slow side of Puerto Escondido.",
+      "body": "We are two minutes from La Punta’s point break — the gentlest left on this coast — and five from the cafés and kitchens that make this corner of town feel like a village. Zicatela’s big waves and big nights are ten minutes up the beach when you want them.",
+      "cta": {
+        "label": "Explore the area",
+        "href": "/the-area"
+      },
+      "image": {
+        "src": "/hero/lapunta.jpg",
+        "alt": "La Punta beach at golden hour"
+      }
+    },
+    {
+      "eyebrow": "Work from here",
+      "title": "Two internet connections. Zero drama.",
+      "body": "Fast fibre internet plus Starlink backup cover every casa and the courtyard — two independent connections, so the morning call never drops. Surf at lunch, finish the day with sand still on your feet. Remote work was the excuse for half our favorite guests.",
+      "cta": {
+        "label": "Check availability",
+        "href": "/#book"
+      },
+      "image": {
+        "src": "/hero/workspace.jpg",
+        "alt": "Taking the morning call from the terrace shade — feet up on the bench, tablet in hand"
+      }
+    }
+  ],
+  "guestQuote": {
+    "text": "It feels less like a hotel and more like the beach house of a friend who happens to have great taste.",
+    "attribution": "A guest, last winter"
+  },
+  "closing": {
+    "eyebrow": "Book direct",
+    "title": "Ready for your Mexican adventure?",
+    "body": "Book direct with us for your best rates. We answer every inquiry personally — usually within hours."
+  },
+  "wholeHouse": {
+    "eyebrow": "The whole house",
+    "title": "Six casas, one key.",
+    "body": "Book all six casas and the courtyard is yours — the pool, the terraces, the whole slow rhythm of the place. Punta Ox Ha' sleeps 14–16 across its six casas: room enough for a retreat, a surf trip, a remote-team offsite, or three generations of one family. Tell us your dates and what you are planning — we will shape the house around it.",
+    "cta": "Inquire about the whole house"
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "manifesto": {
+    "eyebrow": "Bienvenido a nuestra casa",
+    "body": "Punta Ox Ha' son seis casas alrededor de un oasis con patio central en La Punta, a pasos del surf, de los cafés y de la vida tranquila de Puerto Escondido. La construimos para surfistas que persiguen la ola perfecta, nómadas digitales en busca de inspiración y para cualquiera que simplemente quiera relajarse y recargar energías. Quédate unas noches y el lugar empieza a sentirse tuyo; quédate una semana y el barrio también."
+  },
+  "splits": [
+    {
+      "eyebrow": "El patio central",
+      "title": "Una alberca en medio de todo.",
+      "body": "El patio central es el corazón de la casa: una alberca para refrescarte, sombra para leer y ese tipo de espacio común donde los desconocidos terminan compartiendo planes para la cena. Tranquilo cuando quieres silencio, sociable cuando quieres compañía.",
+      "cta": {
+        "label": "Descubre las casas",
+        "href": "/suites"
+      },
+      "image": {
+        "src": "/hero/courtyard.jpg",
+        "alt": "Vista cenital de la alberca del patio — agua turquesa, un flotador, sombrillas y vegetación alrededor"
+      }
+    },
+    {
+      "eyebrow": "La Punta",
+      "title": "El lado tranquilo de Puerto Escondido.",
+      "body": "Estamos a dos minutos del point break de La Punta, la izquierda más suave de esta costa, y a cinco de los cafés y las cocinas que hacen que este rincón del pueblo se sienta como una aldea. Las olas grandes y las noches largas de Zicatela quedan a diez minutos playa arriba cuando las busques.",
+      "cta": {
+        "label": "Explora la zona",
+        "href": "/the-area"
+      },
+      "image": {
+        "src": "/hero/lapunta.jpg",
+        "alt": "La playa de La Punta a la hora dorada"
+      }
+    },
+    {
+      "eyebrow": "Trabaja desde aquí",
+      "title": "Dos conexiones a internet. Cero drama.",
+      "body": "Internet de fibra más respaldo Starlink cubren cada casa y el patio central — dos conexiones independientes, para que la llamada de la mañana nunca se caiga. Surfea al mediodía, termina el día con la arena todavía en los pies. El trabajo remoto fue la excusa de la mitad de nuestros huéspedes favoritos.",
+      "cta": {
+        "label": "Consulta disponibilidad",
+        "href": "/#book"
+      },
+      "image": {
+        "src": "/hero/workspace.jpg",
+        "alt": "La llamada de la mañana a la sombra de la terraza — pies arriba en la banca, tablet en mano"
+      }
+    }
+  ],
+  "guestQuote": {
+    "text": "Se siente menos como un hotel y más como la casa de playa de un amigo que resulta tener muy buen gusto.",
+    "attribution": "Una huésped, el invierno pasado"
+  },
+  "closing": {
+    "eyebrow": "Reserva directo",
+    "title": "¿Listo para tu aventura mexicana?",
+    "body": "Reserva directo con nosotros para tus mejores tarifas. Respondemos cada consulta de forma personal, normalmente en cuestión de horas."
+  },
+  "wholeHouse": {
+    "eyebrow": "La casa completa",
+    "title": "Seis casas, una sola llave.",
+    "body": "Reserva las seis casas y el patio es tuyo — la alberca, las terrazas, el ritmo lento de todo el lugar. Punta Ox Ha' recibe de 14 a 16 huéspedes en sus seis casas: espacio de sobra para un retiro, un surf trip, un equipo remoto o tres generaciones de una familia. Cuéntanos tus fechas y qué estás planeando — armamos la casa a tu medida.",
+    "cta": "Consulta por la casa completa"
+  }
+}

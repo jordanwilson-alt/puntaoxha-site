@@ -1,0 +1,51 @@
+{
+  "bearings": {
+    "eyebrow": "Para ubicarte",
+    "title": "Cerca de todo lo que importa.",
+    "note": "Compartimos la dirección exacta con tu confirmación de reserva.",
+    "items": [
+      {
+        "place": "El point de La Punta",
+        "distance": "2 min a pie"
+      },
+      {
+        "place": "Cafés y cocinas de La Punta",
+        "distance": "A unos pasos"
+      },
+      {
+        "place": "Playa Zicatela",
+        "distance": "10 min por la arena"
+      },
+      {
+        "place": "Caleta Carrizalillo",
+        "distance": "15 min en taxi"
+      },
+      {
+        "place": "Aeropuerto de Puerto Escondido (PXM)",
+        "distance": "~15 min en auto"
+      }
+    ]
+  },
+  "areaSections": [
+    {
+      "eyebrow": "Surf",
+      "title": "La Punta, Zicatela, Carrizalillo",
+      "body": "La Punta es la izquierda relajada al final de nuestra calle: el lugar para aprender o quitarte el óxido. Zicatela es la famosa ola pesada, para verla desde la arena o entrar al agua si sabes lo que haces. Carrizalillo es la bahía de bolsillo para nadar y hacer snorkel."
+    },
+    {
+      "eyebrow": "Comer y beber",
+      "title": "Las cocinas de barrio de La Punta",
+      "body": "A cinco minutos caminando tienes cafés de desayuno, taquerías, mezcalerías y cenas pausadas bajo series de luces. Pídenos la lista del momento: la mantenemos actualizada y con opinión."
+    },
+    {
+      "eyebrow": "Explorar",
+      "title": "Lagunas bioluminiscentes, aguas termales, tortugas",
+      "body": "La laguna de Manialtepec brilla en las noches oscuras. Atotonilco tiene aguas termales en los cerros. Mazunte y el santuario de las tortugas quedan a una hora costa abajo. Podemos organizarte choferes y guías de confianza para todo ello."
+    },
+    {
+      "eyebrow": "Moverte",
+      "title": "Motonetas, tablas y distancias descalzas",
+      "body": "Casi toda la vida aquí pasa en una caminata de diez minutos. Para todo lo demás, te recomendamos la renta de motonetas en la que confiamos y la tienda de tablas con el buen quiver."
+    }
+  ]
+}
