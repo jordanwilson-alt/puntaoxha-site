@@ -9,7 +9,7 @@
 
 backend:
   name: github
-  repo: puntaoxha/puntaoxha-site   # ← UPDATE after the GitHub repo is created
+  repo: jordanwilson-alt/puntaoxha-site
   branch: main
 
 site_url: https://puntaoxha.com

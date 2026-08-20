@@ -1,45 +1,15 @@
 {
-  "fetchedAt": "2026-08-05T18:55:23.434Z",
+  "fetchedAt": "2026-08-20T21:23:25.184Z",
   "casas": {
     "casa-mia": {
       "propertyId": 715038,
       "unit": "1A",
-      "priceMXN": 3141,
-      "priceUSD": 158,
+      "priceMXN": 899,
+      "priceUSD": 45,
       "currency": "MXN",
       "periods": [
         {
-          "start": "2026-08-05",
-          "end": "2026-08-05",
-          "available": false
-        },
-        {
-          "start": "2026-08-06",
-          "end": "2026-08-06",
-          "available": true
-        },
-        {
-          "start": "2026-08-07",
-          "end": "2026-08-08",
-          "available": false
-        },
-        {
-          "start": "2026-08-09",
-          "end": "2026-08-12",
-          "available": true
-        },
-        {
-          "start": "2026-08-13",
-          "end": "2026-08-17",
-          "available": false
-        },
-        {
-          "start": "2026-08-18",
-          "end": "2026-08-18",
-          "available": true
-        },
-        {
-          "start": "2026-08-19",
+          "start": "2026-08-20",
           "end": "2026-08-21",
           "available": false
         },
@@ -75,7 +45,7 @@
         },
         {
           "start": "2026-09-30",
-          "end": "2026-11-03",
+          "end": "2026-11-18",
           "available": true
         }
       ]
@@ -84,26 +54,21 @@
       "propertyId": 791142,
       "unit": "1B",
       "priceMXN": 2250,
-      "priceUSD": 113,
+      "priceUSD": 114,
       "currency": "MXN",
       "periods": [
         {
-          "start": "2026-08-05",
-          "end": "2026-08-07",
+          "start": "2026-08-20",
+          "end": "2026-08-20",
           "available": false
         },
         {
-          "start": "2026-08-08",
-          "end": "2026-08-10",
-          "available": true
-        },
-        {
-          "start": "2026-08-11",
-          "end": "2026-08-13",
+          "start": "2026-08-21",
+          "end": "2026-08-22",
           "available": false
         },
         {
-          "start": "2026-08-14",
+          "start": "2026-08-23",
           "end": "2026-08-25",
           "available": true
         },
@@ -134,7 +99,7 @@
         },
         {
           "start": "2026-09-30",
-          "end": "2026-11-03",
+          "end": "2026-11-18",
           "available": true
         }
       ]
@@ -143,26 +108,11 @@
       "propertyId": 715050,
       "unit": "2A",
       "priceMXN": 2900,
-      "priceUSD": 145,
+      "priceUSD": 146,
       "currency": "MXN",
       "periods": [
         {
-          "start": "2026-08-05",
-          "end": "2026-08-09",
-          "available": false
-        },
-        {
-          "start": "2026-08-10",
-          "end": "2026-08-13",
-          "available": false
-        },
-        {
-          "start": "2026-08-14",
-          "end": "2026-08-14",
-          "available": true
-        },
-        {
-          "start": "2026-08-15",
+          "start": "2026-08-20",
           "end": "2026-08-22",
           "available": false
         },
@@ -198,7 +148,7 @@
         },
         {
           "start": "2026-09-30",
-          "end": "2026-11-03",
+          "end": "2026-11-18",
           "available": true
         }
       ]
@@ -207,11 +157,11 @@
       "propertyId": 715048,
       "unit": "2B",
       "priceMXN": 2250,
-      "priceUSD": 113,
+      "priceUSD": 114,
       "currency": "MXN",
       "periods": [
         {
-          "start": "2026-08-05",
+          "start": "2026-08-20",
           "end": "2026-08-22",
           "available": false
         },
@@ -247,7 +197,7 @@
         },
         {
           "start": "2026-09-30",
-          "end": "2026-11-03",
+          "end": "2026-11-18",
           "available": true
         }
       ]
@@ -255,24 +205,14 @@
     "casa-bel": {
       "propertyId": 715045,
       "unit": "3A",
-      "priceMXN": 950,
-      "priceUSD": 48,
+      "priceMXN": 795,
+      "priceUSD": 40,
       "currency": "MXN",
       "periods": [
         {
-          "start": "2026-08-05",
-          "end": "2026-08-09",
-          "available": true
-        },
-        {
-          "start": "2026-08-10",
-          "end": "2026-08-13",
-          "available": false
-        },
-        {
-          "start": "2026-08-14",
+          "start": "2026-08-20",
           "end": "2026-08-25",
-          "available": true
+          "available": false
         },
         {
           "start": "2026-08-26",
@@ -301,7 +241,7 @@
         },
         {
           "start": "2026-09-30",
-          "end": "2026-11-03",
+          "end": "2026-11-18",
           "available": true
         }
       ]
@@ -310,23 +250,13 @@
       "propertyId": 715047,
       "unit": "3B",
       "priceMXN": 1700,
-      "priceUSD": 85,
+      "priceUSD": 86,
       "currency": "MXN",
       "periods": [
         {
-          "start": "2026-08-05",
-          "end": "2026-08-09",
-          "available": false
-        },
-        {
-          "start": "2026-08-10",
-          "end": "2026-08-13",
-          "available": false
-        },
-        {
-          "start": "2026-08-14",
+          "start": "2026-08-20",
           "end": "2026-08-25",
-          "available": true
+          "available": false
         },
         {
           "start": "2026-08-26",
@@ -355,7 +285,7 @@
         },
         {
           "start": "2026-09-30",
-          "end": "2026-11-03",
+          "end": "2026-11-18",
           "available": true
         }
       ]
