@@ -3,7 +3,6 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import SuiteCard from '@components/SuiteCard.astro';
 import { suites as enSuites, booking } from '@content/punta-ox-ha';
 import { getContent, ui, localizePath, resolveLocale, type Locale } from '@i18n';
-import lodgify from '../../data/lodgify.json';
 
 export function getStaticPaths() {
   return enSuites.map((s) => ({ params: { slug: s.slug } }));
@@ -16,20 +15,9 @@ const suite = suites.find((s) => s.slug === Astro.params.slug)!;
 const otherSuites = suites.filter((s) => s.slug !== suite.slug).slice(0, 3);
 const bookUrl = booking.urls[suite.slug] ?? booking.searchUrl;
 
-// Live Lodgify data (baked at build time by scripts/fetch-lodgify.mjs)
-type LodgifyCasa = {
-  priceMXN: number | null;
-  priceUSD: number | null;
-  periods: Array<{ start: string; end: string; available: boolean }>;
-};
-const live: LodgifyCasa | undefined = (lodgify.casas as Record<string, LodgifyCasa>)[suite.slug];
-
-const rateLine = live?.priceMXN
-  ? `${u.suite.from} $${live.priceMXN.toLocaleString()} MXN · ≈ $${live.priceUSD} USD ${u.suite.perNight}`
-  : u.suite.onInquiry;
-
-// Availability is deliberately NOT baked into the page (build-time data goes
-// stale). We link straight into the casa's live Lodgify calendar instead.
+// Rates and availability are deliberately NOT baked into the page: Lodgify
+// prices change by date and season, so any single build-time number misleads
+// guests (and can't match Airbnb). Link to the live Lodgify calendar instead.
 ---
 
 <BaseLayout title={suite.name} description={suite.essence} heroNav={true} lang={locale}>
@@ -80,10 +68,6 @@ const rateLine = live?.priceMXN
           </div>
           <div>
             <dt class="eyebrow-quiet !text-[0.6rem] mb-1">{u.suite.rates}</dt>
-            <dd>{rateLine}</dd>
-          </div>
-          <div>
-            <dt class="eyebrow-quiet !text-[0.6rem] mb-1">{u.suite.availability}</dt>
             <dd><a href={bookUrl} target="_blank" rel="noopener" class="link-discover !text-[0.65rem]">{u.suite.liveCalendar}</a></dd>
           </div>
         </dl>
