@@ -1,8 +1,13 @@
 {
   "name": "puntaoxha",
   "compatibility_date": "2026-09-01",
+  "main": "worker/index.mjs",
   "assets": {
-    "directory": "./dist"
+    "directory": "./dist",
+    "binding": "ASSETS"
+  },
+  "vars": {
+    "CF_ZONE_ID": "5beb80e0a781f3e27bd65466aa9d4ceb"
   },
   "routes": [
     {

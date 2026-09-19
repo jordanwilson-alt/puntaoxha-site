@@ -39,3 +39,6 @@ pnpm-debug.log*
 
 # committed build-time env for CI (all values are public by design)
 !.env.production
+
+# local wrangler dev secrets
+.dev.vars

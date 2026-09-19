@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /stats
+Disallow: /admin
 
 Sitemap: https://puntaoxha.com/sitemap-index.xml
