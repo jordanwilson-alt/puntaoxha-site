@@ -1,7 +1,7 @@
 # ─────────────────────────────────────────────────────────────
 # Punta Ox Ha' — Site Editor configuration (Sveltia CMS)
 # Every editable text and photo on puntaoxha.com is defined here.
-# Saving in the editor commits to GitHub → Netlify rebuilds →
+# Saving in the editor commits to GitHub → Cloudflare rebuilds →
 # live in ~2 minutes.
 # NOTE FOR SETUP: set `repo:` below to the real GitHub repo once
 # it exists (see HANDOVER.md).

@@ -61,5 +61,5 @@ Current state: repo initialized locally, CMS built and shipped at /admin. To act
 - Astro 4 + Tailwind. Content = JSON in `src/content/data/{en,es}/`, loaded by `src/content/punta-ox-ha.ts` / `.es.ts` (types there). UI chrome strings = `src/i18n/index.ts` (code-only)
 - `booking` (Lodgify IDs/URLs) is code-only by design — see `src/content/punta-ox-ha.ts`
 - Local dev: `npm run dev` → localhost:4321 (`/admin/index.html` in dev; `/admin` works in prod). CMS local mode: "Work with Local Repository"
-- Manual deploy (pre-CI): `npm run build && netlify deploy --dir=dist --prod`
+- Manual deploy (pre-CI): `npm run build && npx wrangler deploy`
 - Cancel the old Squarespace **website plan** before it renews **Sep 2, 2026** (keep the domain registration)
