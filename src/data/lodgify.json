@@ -1,40 +1,15 @@
 {
-  "fetchedAt": "2026-08-20T21:23:25.184Z",
+  "fetchedAt": "2026-09-19T15:26:32.718Z",
   "casas": {
     "casa-mia": {
       "propertyId": 715038,
       "unit": "1A",
-      "priceMXN": 899,
-      "priceUSD": 45,
+      "priceMXN": 3141,
+      "priceUSD": 159,
       "currency": "MXN",
       "periods": [
         {
-          "start": "2026-08-20",
-          "end": "2026-08-21",
-          "available": false
-        },
-        {
-          "start": "2026-08-22",
-          "end": "2026-08-25",
-          "available": true
-        },
-        {
-          "start": "2026-08-26",
-          "end": "2026-08-29",
-          "available": false
-        },
-        {
-          "start": "2026-08-30",
-          "end": "2026-09-15",
-          "available": true
-        },
-        {
-          "start": "2026-09-16",
-          "end": "2026-09-19",
-          "available": false
-        },
-        {
-          "start": "2026-09-20",
+          "start": "2026-09-19",
           "end": "2026-09-23",
           "available": true
         },
@@ -45,7 +20,7 @@
         },
         {
           "start": "2026-09-30",
-          "end": "2026-11-18",
+          "end": "2026-12-18",
           "available": true
         }
       ]
@@ -58,37 +33,7 @@
       "currency": "MXN",
       "periods": [
         {
-          "start": "2026-08-20",
-          "end": "2026-08-20",
-          "available": false
-        },
-        {
-          "start": "2026-08-21",
-          "end": "2026-08-22",
-          "available": false
-        },
-        {
-          "start": "2026-08-23",
-          "end": "2026-08-25",
-          "available": true
-        },
-        {
-          "start": "2026-08-26",
-          "end": "2026-08-29",
-          "available": false
-        },
-        {
-          "start": "2026-08-30",
-          "end": "2026-09-15",
-          "available": true
-        },
-        {
-          "start": "2026-09-16",
-          "end": "2026-09-19",
-          "available": false
-        },
-        {
-          "start": "2026-09-20",
+          "start": "2026-09-19",
           "end": "2026-09-23",
           "available": true
         },
@@ -100,6 +45,16 @@
         {
           "start": "2026-09-30",
           "end": "2026-11-18",
+          "available": true
+        },
+        {
+          "start": "2026-11-19",
+          "end": "2026-11-21",
+          "available": false
+        },
+        {
+          "start": "2026-11-22",
+          "end": "2026-12-18",
           "available": true
         }
       ]
@@ -108,36 +63,11 @@
       "propertyId": 715050,
       "unit": "2A",
       "priceMXN": 2900,
-      "priceUSD": 146,
+      "priceUSD": 147,
       "currency": "MXN",
       "periods": [
         {
-          "start": "2026-08-20",
-          "end": "2026-08-22",
-          "available": false
-        },
-        {
-          "start": "2026-08-23",
-          "end": "2026-08-25",
-          "available": true
-        },
-        {
-          "start": "2026-08-26",
-          "end": "2026-08-29",
-          "available": false
-        },
-        {
-          "start": "2026-08-30",
-          "end": "2026-09-15",
-          "available": true
-        },
-        {
-          "start": "2026-09-16",
-          "end": "2026-09-19",
-          "available": false
-        },
-        {
-          "start": "2026-09-20",
+          "start": "2026-09-19",
           "end": "2026-09-23",
           "available": true
         },
@@ -148,7 +78,7 @@
         },
         {
           "start": "2026-09-30",
-          "end": "2026-11-18",
+          "end": "2026-12-18",
           "available": true
         }
       ]
@@ -161,32 +91,7 @@
       "currency": "MXN",
       "periods": [
         {
-          "start": "2026-08-20",
-          "end": "2026-08-22",
-          "available": false
-        },
-        {
-          "start": "2026-08-23",
-          "end": "2026-08-25",
-          "available": true
-        },
-        {
-          "start": "2026-08-26",
-          "end": "2026-08-29",
-          "available": false
-        },
-        {
-          "start": "2026-08-30",
-          "end": "2026-09-15",
-          "available": true
-        },
-        {
-          "start": "2026-09-16",
-          "end": "2026-09-19",
-          "available": false
-        },
-        {
-          "start": "2026-09-20",
+          "start": "2026-09-19",
           "end": "2026-09-23",
           "available": true
         },
@@ -197,7 +102,12 @@
         },
         {
           "start": "2026-09-30",
-          "end": "2026-11-18",
+          "end": "2026-12-14",
+          "available": false
+        },
+        {
+          "start": "2026-12-15",
+          "end": "2026-12-18",
           "available": true
         }
       ]
@@ -205,32 +115,12 @@
     "casa-bel": {
       "propertyId": 715045,
       "unit": "3A",
-      "priceMXN": 795,
-      "priceUSD": 40,
+      "priceMXN": 1499,
+      "priceUSD": 76,
       "currency": "MXN",
       "periods": [
         {
-          "start": "2026-08-20",
-          "end": "2026-08-25",
-          "available": false
-        },
-        {
-          "start": "2026-08-26",
-          "end": "2026-08-29",
-          "available": false
-        },
-        {
-          "start": "2026-08-30",
-          "end": "2026-09-15",
-          "available": true
-        },
-        {
-          "start": "2026-09-16",
-          "end": "2026-09-19",
-          "available": false
-        },
-        {
-          "start": "2026-09-20",
+          "start": "2026-09-19",
           "end": "2026-09-23",
           "available": true
         },
@@ -241,7 +131,7 @@
         },
         {
           "start": "2026-09-30",
-          "end": "2026-11-18",
+          "end": "2026-12-18",
           "available": true
         }
       ]
@@ -254,27 +144,12 @@
       "currency": "MXN",
       "periods": [
         {
-          "start": "2026-08-20",
-          "end": "2026-08-25",
+          "start": "2026-09-19",
+          "end": "2026-09-21",
           "available": false
         },
         {
-          "start": "2026-08-26",
-          "end": "2026-08-29",
-          "available": false
-        },
-        {
-          "start": "2026-08-30",
-          "end": "2026-09-15",
-          "available": true
-        },
-        {
-          "start": "2026-09-16",
-          "end": "2026-09-19",
-          "available": false
-        },
-        {
-          "start": "2026-09-20",
+          "start": "2026-09-22",
           "end": "2026-09-23",
           "available": true
         },
@@ -285,7 +160,17 @@
         },
         {
           "start": "2026-09-30",
-          "end": "2026-11-18",
+          "end": "2026-10-26",
+          "available": true
+        },
+        {
+          "start": "2026-10-27",
+          "end": "2026-12-15",
+          "available": false
+        },
+        {
+          "start": "2026-12-16",
+          "end": "2026-12-18",
           "available": true
         }
       ]

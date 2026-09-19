@@ -10,12 +10,15 @@
     "lodgify": "node scripts/fetch-lodgify.mjs",
     "prebuild": "node scripts/fetch-lodgify.mjs",
     "build": "astro build",
-    "preview": "astro preview",
+    "preview": "npm run build && wrangler dev",
     "astro": "astro",
-    "check": "astro check"
+    "check": "astro check",
+    "deploy": "npm run build && wrangler deploy",
+    "cf-typegen": "wrangler types"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
+    "@astrojs/cloudflare": "11",
     "@astrojs/tailwind": "^5.1.4",
     "astro": "^4.16.18",
     "embla-carousel": "^8.5.1",
@@ -27,7 +30,8 @@
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.10",
-    "@tailwindcss/typography": "^0.5.15"
+    "@tailwindcss/typography": "^0.5.15",
+    "wrangler": "^4.135.0"
   },
   "engines": {
     "node": ">=18.17.0"
