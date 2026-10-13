@@ -16,7 +16,7 @@
         "Kitchenette"
       ],
       "hero": {
-        "src": "/suites/casa-keiki/hero.jpg",
+        "src": "/uploads/PHOTO-2026-09-22-08-01-12.jpg",
         "alt": "Casa Keiki — garden-level casa opening to the courtyard"
       },
       "gallery": [
@@ -50,7 +50,8 @@
           "alt": "Casa Keiki bathroom — pedestal sink, toilet, and glass-enclosed shower",
           "caption": "Bathroom"
         }
-      ]
+      ],
+      "comingSoon": false
     },
     {
       "slug": "casa-mia",
@@ -70,7 +71,7 @@
         "Fibre + Starlink Wi-Fi"
       ],
       "hero": {
-        "src": "/suites/casa-mia/hero.jpg",
+        "src": "/uploads/Screenshot 2026-10-13 at 10.08.26 AM.png",
         "alt": "Casa Mia — two-bedroom home with poolside patio"
       },
       "gallery": [
@@ -109,7 +110,8 @@
           "alt": "Casa Mia bathroom — vanity with a sconce and towel hooks",
           "caption": "Bathroom"
         }
-      ]
+      ],
+      "comingSoon": false
     },
     {
       "slug": "casa-peach",
@@ -163,7 +165,8 @@
           "alt": "Casa Peach bathroom — glass shower, amber tile, and stocked towel rack",
           "caption": "Bathroom"
         }
-      ]
+      ],
+      "comingSoon": false
     },
     {
       "slug": "casa-yada",
@@ -215,7 +218,8 @@
           "alt": "Casa Yada shower",
           "caption": "Shower"
         }
-      ]
+      ],
+      "comingSoon": false
     },
     {
       "slug": "casa-linda",
@@ -277,7 +281,8 @@
           "alt": "Casa Linda bathroom — walk-in shower",
           "caption": "Bathroom — walk-in shower"
         }
-      ]
+      ],
+      "comingSoon": false
     },
     {
       "slug": "casa-bel",
@@ -326,7 +331,8 @@
           "alt": "Casa Bel bedroom — flat-screen TV on a carved wood dresser, the door open to the en-suite bathroom, beside a sunlit window",
           "caption": "Bedroom — en-suite"
         }
-      ]
+      ],
+      "comingSoon": false
     }
   ]
 }
